@@ -21,7 +21,13 @@ function initHeaderNav() {
   window.addEventListener('scroll', updateHeader, { passive: true });
 
   function closeNav() {
-    if (mainNav) mainNav.classList.remove('is-open');
+    if (mainNav) {
+      mainNav.classList.remove('is-open');
+      mainNav.classList.add('is-closing');
+      window.setTimeout(function () {
+        mainNav.classList.remove('is-closing');
+      }, 280);
+    }
     if (menuToggle) {
       menuToggle.classList.remove('is-active');
       menuToggle.setAttribute('aria-expanded', 'false');
@@ -36,14 +42,32 @@ function initHeaderNav() {
       menuToggle.classList.toggle('is-active', open);
       menuToggle.setAttribute('aria-expanded', String(open));
       document.body.classList.toggle('nav-open', open);
+      if (!open) {
+        mainNav.classList.add('is-closing');
+        window.setTimeout(function () {
+          mainNav.classList.remove('is-closing');
+        }, 280);
+      }
+    });
+  }
+
+  var closeButton = document.querySelector('.nav__close');
+  if (closeButton) {
+    closeButton.addEventListener('click', function (e) {
+      e.preventDefault();
+      closeNav();
     });
   }
 
   document.addEventListener('click', function (e) {
     if (mainNav && mainNav.classList.contains('is-open')) {
-      if (window.innerWidth <= 900 && e.target.closest('#main-nav') && !e.target.closest('.nav__item')) {
+      var clickedInsideNav = e.target.closest('#main-nav');
+      var clickedToggle = e.target.closest('.hamburger');
+      var clickedCloseButton = e.target.closest('.nav__close');
+      if (!clickedInsideNav && !clickedToggle && !e.target.closest('.header__inner')) {
         closeNav();
-      } else if (!e.target.closest('.header__inner')) {
+      } else if (clickedCloseButton) {
+        e.preventDefault();
         closeNav();
       }
     }
