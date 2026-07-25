@@ -9,7 +9,6 @@
   overflow: hidden;
 }
 
-/* Degradado superpuesto */
 .section-banner::before {
   content: "";
   position: absolute;
@@ -33,17 +32,95 @@
   font-size: 1.8rem;
 }
 
-
-/* CONTENIDO PDF MATRICULA */
-.matricula__pdf {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
+/* CALENDARIO ACADÉMICO */
+.calendario.container {
+  padding: 2rem 0 3rem;
 }
 
-.matricula__pdf embed {
-  border: 2px solid #800000; /* Guinda */
-  border-radius: 10px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+.calendario__hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.4rem 1.6rem;
+  margin-bottom: 1.5rem;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f3ee 100%);
+  border: 1px solid rgba(0,0,0,0.05);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.06);
+}
+
+.calendario__eyebrow {
+  display: inline-block;
+  margin-bottom: 0.4rem;
+  padding: 0.35rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(198, 40, 40, 0.08);
+  color: #c62828;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.calendario__hero h2 {
+  margin: 0 0 0.4rem;
+  font-size: 1.35rem;
+  color: #1b1b2f;
+}
+
+.calendario__hero p {
+  margin: 0;
+  color: #666;
+  line-height: 1.6;
+}
+
+.calendario__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.85rem 1.2rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #c62828, #9e1a1a);
+  color: #fff;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 12px 24px rgba(198,40,40,0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.calendario__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 28px rgba(198,40,40,0.25);
+}
+
+.calendario__pdf {
+  padding: 0.5rem;
+  border-radius: 24px;
+  background: linear-gradient(145deg, #fff, #f7eee7);
+  box-shadow: 0 20px 45px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.calendario__pdf iframe {
+  display: block;
+  width: 100%;
+  min-height: 720px;
+  height: 78vh;
+  border: 0;
+  border-radius: 18px;
+  background: #fff;
+}
+
+@media (max-width: 768px) {
+  .calendario__hero {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .calendario__pdf iframe {
+    min-height: 60vh;
+    height: 70vh;
+  }
 }

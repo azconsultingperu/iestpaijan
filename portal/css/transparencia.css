@@ -1,0 +1,186 @@
+/* ====== TRANSPARENCIA - Consolidated ====== */
+
+/* ====== SECTION BANNER ====== */
+.section-banner {
+  position: relative;
+  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  text-align: center;
+  overflow: hidden;
+}
+.section-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.88), rgba(50, 8, 12, 0.8));
+  border-radius: 12px;
+}
+.section-banner h1 {
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 1;
+}
+.section-banner h1 i { font-size: 1.8rem; }
+
+/* Sub-section heading */
+.section-subtitle {
+  font-size: 1.6rem;
+  color: var(--primary);
+  text-align: center;
+  margin: 3rem 0 1.5rem;
+  font-weight: 700;
+}
+
+/* ====== DOCUMENTOS GESTIÓN ====== */
+.doc-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.doc-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  padding: 1.2rem;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.doc-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+.doc-card i {
+  font-size: 2.5rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.doc-card h3 {
+  font-size: 0.95rem;
+  margin: 0.5rem 0;
+  color: #333;
+}
+.doc-card a {
+  display: inline-block;
+  margin-top: 0.5rem;
+  background: var(--primary);
+  color: #fff;
+  text-decoration: none;
+  padding: 0.4rem 1rem;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background 0.3s ease;
+}
+.doc-card a:hover { background: #a00000; }
+
+/* ====== ESTADÍSTICAS ====== */
+.stats-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem 1.5rem;
+  width: 200px;
+  text-align: center;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+}
+.stat-card i {
+  font-size: 2rem;
+  color: var(--primary);
+  margin-bottom: 0.5rem;
+}
+.stat-card .numero {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+.stat-card p {
+  margin: 0.3rem 0 0;
+  color: #555;
+  font-weight: 500;
+}
+
+/* ====== DONACIONES ====== */
+.donaciones-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  text-align: center;
+}
+.donaciones-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1rem;
+}
+.donaciones-content .bank-info {
+  background: #f9f2f2;
+  border: 1px solid rgba(var(--primary-rgb), 0.2);
+  border-radius: 8px;
+  padding: 1rem;
+  display: inline-block;
+  text-align: left;
+}
+.donaciones-content .bank-info p {
+  margin: 0.3rem 0;
+  font-size: 1rem;
+}
+
+/* ====== LICENCIAMIENTO ====== */
+.licencia-content {
+  max-width: 800px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  text-align: center;
+}
+.licencia-content p {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+/* ====== TUPA ====== */
+.tupa-embed {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+.tupa-embed embed {
+  border: 2px solid var(--primary);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  max-width: 100%;
+}
+
+@media (max-width: 768px) {
+  .doc-grid { flex-direction: column; align-items: center; }
+  .stats-grid { flex-direction: column; align-items: center; }
+  .stat-card { width: 100%; max-width: 280px; }
+  .doc-card { width: 100%; max-width: 280px; }
+}

@@ -2,149 +2,67 @@
 <html lang="es">
 
 <head>
-    <meta charset="utf-8" />
+   <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>IESTP PAIJÁN</title>
     <meta name="description" content="Página Oficial de IESTP PAIJÁN." />
-    <link rel="stylesheet" href="portal/css/styles.css?v=10" />
-    <link rel="stylesheet" href="portal/css/noticias.css?v=13" />
+    <link rel="stylesheet" href="portal/css/styles.css?v=99" />
+    <link rel="stylesheet" href="portal/css/noticias.css?v=14" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="portal/imagenes/logopaijan.jpg" type="image/x-icon">
+    <link rel="icon" href="portal/imagenes/logo-transp.png" type="image/png">
     <!-- Importa Font Awesome -->
     <link rel="stylesheet" href="portal/fontawesome/css/all.min.css">
 </head>
 
 <body class="has-hero">
-<div id="page-loader" class="page-loader"><div class="page-loader__ring"><img src="portal/imagenes/logopaijan.jpg" alt="IESTP PAIJÁN" class="page-loader__logo"></div></div>
-
-    <!-- Header -->
-    <header id="site-header" class="header">
-        <div class="container header__inner">
-            <a class="brand" href="#">
-                <img src="portal/imagenes/iestp_paijan.png" alt="Instituto Superior Tecnológico Paiján"
-                    class="brand__img">
-                <span class="brand__slogan">¡Crea, Innova e Inspira!</span>
-            </a>
-
-            <!-- Botón hamburguesa animado -->
-            <button id="menu-toggle" class="hamburger" aria-label="Abrir menú" aria-expanded="false">
-                <span class="hamburger__line"></span>
-                <span class="hamburger__line"></span>
-                <span class="hamburger__line"></span>
-            </button>
-
-            <!-- Navegación -->
-            <ul id="main-nav" class="nav">
-                <li class="nav__item">
-                    <a href="#inicio" class="nav__link">Inicio</a>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Nosotros</a>
-                    <ul class="submenu">
-                        <li><a href="portal/presentacion/">Presentación</a></li>
-                        <li><a href="portal/resena_historica/">Reseña Histórica</a></li>
-                        <li><a href="portal/mision_vision/">Misión, Visión y Valores</a></li>
-                        <li><a href="portal/organigrama/">Organigrama</a></li>
-                        <li><a href="portal/plana_jerarquica">Plana Jerárquica</a></li>
-                        <li><a href="portal/planadocente/">Plana docencia</a></li>
-                    </ul>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Admisión</a>
-                    <ul class="submenu">
-                        <li><a href="portal/admision/">Admisión</a></li>
-                        <li><a href="portal/calendario_academico/">Calendario Académico</a></li>
-                        <li><a href="portal/matriculas/">Matrículas</a></li>
-                        <li><a href="portal/becas/">Becas</a></li>
-                    </ul>
-                </li>
-                <li class="nav__item">
-                    <a href="#programas" class="nav__link">Programas</a>
-                    <ul class="submenu">
-                        <li><a href="portal/acc/">Administración de Centros de Cómputo</a></li>
-                        <li><a href="portal/pagro/">PRODUCCIÓN AGROPECUARIA</a></li>
-                        <li><a href="portal/enfermeria_tecnica/">ENFERMERÍA TÉCNICA</a></li>
-                    </ul>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Transparencia</a>
-                    <ul class="submenu">
-                        <li><a href="portal/documentos_gestion/">Documentos en Gestión</a></li>
-                        <li><a href="portal/estadisticas/">Estadísticas</a></li>
-                        <li><a href="portal/donaciones_inversiones/">Donaciones e Inversiones</a></li>
-                        <li><a href="portal/licenciamiento/">Licenciamiento</a></li>
-                        <li><a href="portal/tupa/">TUPA</a></li>
-                    </ul>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Servicios</a>
-                    <ul class="submenu">
-                        <li><a href="https://www.alphaeditorialcloud.com/library" target="_blank">Biblioteca
-                                Virtual</a></li>
-                        <li><a href="https://campusvirtual.iestpaijan.edu.pe/login/index.php" target="_blank">Campus
-                                virtual</a></li>
-                        <li><a href="portal/bienestar_empleabilidad/">Bienestar y Empleabilidad</a></li>
-                        <li><a href="portal/consultorio_psicologico/">Consultorio Psicológico</a></li>
-                        <li><a href="portal/bolsa_trabajo/">Bolsa de Trabajo e Inserción Laboral</a></li>
-                        <li><a href="https://siitec.grell.gob.pe/authentication" target="_blank">Sistema Informático
-                                para Institutos
-                                Tecnológicos</a></li>
-                        <li><a href="portal/servicio_topico/">Servicio Tópico</a></li>
-                    </ul>
-                </li>
-                <li class="nav__item">
-                    <a href="#" class="nav__link">Otros</a>
-                    <ul class="submenu">
-                        <li><a href="portal/enlaces_institucionales/">Enlaces Institucionales</a></li>
-                        <li><a href="portal/manual_campus/">Manual de campus virtual</a></li>
-                        <li><a href="portal/galeria/">Galeria</a></li>
-                        <li><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </li>
-                <li class="nav__item header__social">
-                    <a href="https://www.facebook.com/iestp.paijan.9" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="header__social-icon"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-                    <a href="https://www.instagram.com/iestpaijan/" aria-label="Instagram" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="header__social-icon"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-                    </a>
-                    <a href="https://www.youtube.com/@iestppaijan8712" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="header__social-icon"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@iestppaijan" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="header__social-icon"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </header>
+<div data-include="shell" data-root="portal/" data-home="#" data-page="inicio"></div>
 
     <main id="inicio">
         <!-- Hero -->
         <section class="hero hero--static" id="hero">
             <div class="container hero__content">
-                <h1 class="hero__title"><span class="hero__title-accent">Comprometidos</span> con la Calidad y el Desarrollo de Nuestra Comunidad</h1>
-                <div class="hero__cta">
-                    <a href="portal/admision/" class="btn btn--primary">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
-                        Postula ahora
-                    </a>
-                    <a href="#programas" class="btn btn--secondary">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
-                        Ver programas
-                    </a>
+                <div class="hero__body">
+                    <h1 class="hero__title"><span class="hero__title-accent">Comprometidos</span> con la Calidad y el Desarrollo de Nuestra Comunidad</h1>
+                    <div class="hero__cta">
+                        <a href="portal/admision/" class="btn btn--primary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c0 1.1 2.7 2 6 2s6-.9 6-2v-5"/></svg>
+                            Postula ahora
+                        </a>
+                        <a href="#programas" class="btn btn--secondary">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+                            Ver programas
+                        </a>
+                    </div>
                 </div>
-            </div>
-            <div class="hero__cta-wrapper">
+                <div class="hero__stats">
+                    <div class="hero__stat">
+                        <div class="hero__stat-icon"><i class="fas fa-calendar-alt"></i></div>
+                        <div class="hero__stat-numero" id="years-experience">0</div>
+                        <p>Años de Experiencia</p>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-icon"><i class="fas fa-book-open"></i></div>
+                        <div class="hero__stat-numero" data-target="3">0</div>
+                        <p>Programas Académicos</p>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-icon"><i class="fas fa-graduation-cap"></i></div>
+                        <div class="hero__stat-numero" data-target="500" data-suffix="+">0</div>
+                        <p>Egresados</p>
+                    </div>
+                    <div class="hero__stat">
+                        <div class="hero__stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                        <div class="hero__stat-numero" data-target="25" data-suffix="+">0</div>
+                        <p>Docentes Calificados</p>
+                    </div>
+                </div>
                 <a href="#beneficios" class="hero__scroll-btn">
-                            <span>Desplázate</span>
+                    <span>Desplázate</span>
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </a>
             </div>
-            </div>
-
             <div class="hero__shapes" aria-hidden="true">
                 <div class="hero__shape hero__shape--1"></div>
                 <div class="hero__shape hero__shape--2"></div>
@@ -152,6 +70,7 @@
             </div>
         </section>
 
+        <!-- Beneficios -->
         <section class="beneficios-section" id="beneficios">
             <div class="container">
                 <div class="beneficios-header">
@@ -159,48 +78,83 @@
                     <h2 class="beneficios-title">Razones para Estudiar en IESTP Paiján</h2>
                     <p class="beneficios-subtitle">Formación técnica gratuita con los más altos estándares de calidad educativa</p>
                 </div>
+                <div class="beneficios-spotlight">
+                    <div class="beneficios-spotlight__content">
+                        <span class="beneficios-spotlight__eyebrow">Experiencia institucional</span>
+                        <p>Formación técnica superior con infraestructura moderna, docentes comprometidos y oportunidades reales de desarrollo para tu futuro profesional.</p>
+                    </div>
+                    <div class="beneficios-spotlight__chips">
+                        <span>100% pública</span>
+                        <span>Formación técnica</span>
+                        <span>Vinculación laboral</span>
+                    </div>
+                </div>
                 <div class="beneficios-grid">
-                    <article class="beneficio-card reveal-on-scroll">
-                        <div class="beneficio-icon-wrap">
-                            <i class="fas fa-credit-card beneficio-icon"></i>
+                    <article class="beneficio-card">
+                        <div class="beneficio-card-bg"></div>
+                        <div class="beneficio-card-number">01</div>
+                        <div class="beneficio-card-inner">
+                            <div class="beneficio-icon-wrap">
+                                <i class="fas fa-credit-card beneficio-icon"></i>
+                            </div>
+                            <h3 class="beneficio-title">Sin Mensualidad</h3>
+                            <p class="beneficio-desc">Educación superior pública gratuita para todos nuestros estudiantes.</p>
                         </div>
-                        <h3 class="beneficio-title">Sin Mensualidad</h3>
-                        <p class="beneficio-desc">Educación superior pública gratuita para todos nuestros estudiantes.</p>
                     </article>
-                    <article class="beneficio-card reveal-on-scroll">
-                        <div class="beneficio-icon-wrap">
-                            <i class="fas fa-graduation-cap beneficio-icon"></i>
+                    <article class="beneficio-card">
+                        <div class="beneficio-card-bg"></div>
+                        <div class="beneficio-card-number">02</div>
+                        <div class="beneficio-card-inner">
+                            <div class="beneficio-icon-wrap">
+                                <i class="fas fa-graduation-cap beneficio-icon"></i>
+                            </div>
+                            <h3 class="beneficio-title">Convalidación Universitaria</h3>
+                            <p class="beneficio-desc">Convalida tus estudios con universidades nacionales e internacionales.</p>
                         </div>
-                        <h3 class="beneficio-title">Convalidación Universitaria</h3>
-                        <p class="beneficio-desc">Convalida tus estudios con universidades nacionales e internacionales.</p>
                     </article>
-                    <article class="beneficio-card reveal-on-scroll">
-                        <div class="beneficio-icon-wrap">
-                            <i class="fas fa-award beneficio-icon"></i>
+                    <article class="beneficio-card">
+                        <div class="beneficio-card-bg"></div>
+                        <div class="beneficio-card-number">03</div>
+                        <div class="beneficio-card-inner">
+                            <div class="beneficio-icon-wrap">
+                                <i class="fas fa-award beneficio-icon"></i>
+                            </div>
+                            <h3 class="beneficio-title">Título Oficial</h3>
+                            <p class="beneficio-desc">Obtén un título técnico profesional a nombre de la Nación.</p>
                         </div>
-                        <h3 class="beneficio-title">Título Oficial</h3>
-                        <p class="beneficio-desc">Obtén un título técnico profesional a nombre de la Nación.</p>
                     </article>
-                    <article class="beneficio-card reveal-on-scroll">
-                        <div class="beneficio-icon-wrap">
-                            <i class="fas fa-chalkboard-teacher beneficio-icon"></i>
+                    <article class="beneficio-card">
+                        <div class="beneficio-card-bg"></div>
+                        <div class="beneficio-card-number">04</div>
+                        <div class="beneficio-card-inner">
+                            <div class="beneficio-icon-wrap">
+                                <i class="fas fa-chalkboard-teacher beneficio-icon"></i>
+                            </div>
+                            <h3 class="beneficio-title">Docentes Calificados</h3>
+                            <p class="beneficio-desc">Planilla docente con amplia experiencia profesional y pedagógica.</p>
                         </div>
-                        <h3 class="beneficio-title">Docentes Calificados</h3>
-                        <p class="beneficio-desc">Planilla docente con amplia experiencia profesional y pedagógica.</p>
                     </article>
-                    <article class="beneficio-card reveal-on-scroll">
-                        <div class="beneficio-icon-wrap">
-                            <i class="fas fa-check-circle beneficio-icon"></i>
+                    <article class="beneficio-card">
+                        <div class="beneficio-card-bg"></div>
+                        <div class="beneficio-card-number">05</div>
+                        <div class="beneficio-card-inner">
+                            <div class="beneficio-icon-wrap">
+                                <i class="fas fa-check-circle beneficio-icon"></i>
+                            </div>
+                            <h3 class="beneficio-title">Calidad Educativa</h3>
+                            <p class="beneficio-desc">Servicio educativo con estándares de calidad y mejora continua.</p>
                         </div>
-                        <h3 class="beneficio-title">Calidad Educativa</h3>
-                        <p class="beneficio-desc">Servicio educativo con estándares de calidad y mejora continua.</p>
                     </article>
-                    <article class="beneficio-card reveal-on-scroll">
-                        <div class="beneficio-icon-wrap">
-                            <i class="fas fa-laptop-code beneficio-icon"></i>
+                    <article class="beneficio-card">
+                        <div class="beneficio-card-bg"></div>
+                        <div class="beneficio-card-number">06</div>
+                        <div class="beneficio-card-inner">
+                            <div class="beneficio-icon-wrap">
+                                <i class="fas fa-laptop-code beneficio-icon"></i>
+                            </div>
+                            <h3 class="beneficio-title">Tecnología e Infraestructura</h3>
+                            <p class="beneficio-desc">Laboratorios equipados y moderna infraestructura para tu formación.</p>
                         </div>
-                        <h3 class="beneficio-title">Tecnología e Infraestructura</h3>
-                        <p class="beneficio-desc">Laboratorios equipados y moderna infraestructura para tu formación.</p>
                     </article>
                 </div>
             </div>
@@ -275,7 +229,6 @@
             </div>
         </section>
 
-
         <!-- Noticias -->
         <section id="noticias" class="section noticias-section">
             <div class="container">
@@ -284,24 +237,7 @@
                     <h2 style="font-size:clamp(1.6rem,3.2vw,2.2rem); font-weight:800; color:#1a1a2e; margin:0 0 0.5rem; letter-spacing:-0.03em">Noticias y Eventos</h2>
                     <p style="color:#666; max-width:520px; margin:0 auto">Lo último de la comunidad académica del IESTP Paiján</p>
                 </header>
-                <div id="news-feed" class="news-feed"></div>
-
-                <div id="news-modal" class="modal">
-                    <div class="modal-content">
-                        <div class="modal-content__image">
-                            <img id="modal-img" src="" alt="">
-                            <button class="modal__close" id="modal-close">&times;</button>
-                            <button class="modal__nav modal__nav--prev" id="modal-prev">&#10094;</button>
-                            <button class="modal__nav modal__nav--next" id="modal-next">&#10095;</button>
-                        </div>
-                        <div class="modal-content__body">
-                            <span class="modal-content__category" id="modal-category"></span>
-                            <h3 class="modal-content__title" id="modal-title"></h3>
-                            <span class="modal-content__date" id="modal-date"></span>
-                            <p class="modal-content__text" id="modal-text"></p>
-                        </div>
-                    </div>
-                </div>
+                <div class="news-feed" id="news-feed"></div>
             </div>
         </section>
 
@@ -318,7 +254,7 @@
                     </header>
 
                     <div class="contact-cards">
-                        <article class="contact-card" data-action="phone" data-value="+51919490297">
+                        <article class="contact-card">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
                             </div>
@@ -327,7 +263,7 @@
                                 <span class="contact-card__value">919490297</span>
                             </div>
                         </article>
-                        <article class="contact-card" data-action="email" data-value="admision@iestpaijan.edu.pe">
+                        <article class="contact-card">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
                             </div>
@@ -336,7 +272,7 @@
                                 <span class="contact-card__value">admision@iestpaijan.edu.pe</span>
                             </div>
                         </article>
-                        <article class="contact-card" data-action="address" data-value="https://maps.google.com/?q=Calle+Jesus+de+Nazareth+S%2FN+AA.HH.+Los+Cedros+Mz.+A.+Lote+01+Paij%C3%A1n">
+                        <article class="contact-card">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
                             </div>
@@ -345,25 +281,18 @@
                                 <span class="contact-card__value">Calle Jesus de Nazareth S/N AA.HH. Los Cedros Mz. A. Lote 01</span>
                             </div>
                         </article>
-                        <article class="contact-card" data-action="hours">
+                        <article class="contact-card">
                             <div class="contact-card__icon">
                                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
                             </div>
                             <div class="contact-card__body">
                                 <span class="contact-card__label">Horario</span>
-                                <span class="contact-card__value">Lunes a Viernes · 01:00 pm a 08:00 pm</span>
-                                <span class="hours-badge"></span>
+                                <span class="contact-card__value">Lunes a Viernes — 01:00 pm a 08:00 pm</span>
                             </div>
                         </article>
                     </div>
 
                     <div class="map-container">
-                        <div class="map-overlay-btn">
-                            <a href="https://maps.google.com/?q=IESTP+Paij%C3%A1n" target="_blank" rel="noopener noreferrer">
-                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-                                Ver en Google Maps
-                            </a>
-                        </div>
                         <iframe
                             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3949.7734182967265!2d-79.29756042456054!3d-7.736921376825227!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x90a2a468d6ef05e7%3A0x70c1e457f12e8c25!2sIESTP%20Paij%C3%A1n!5e0!3m2!1ses!2spe!4v1701386121404!5m2!1ses!2spe"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
@@ -435,91 +364,26 @@
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer__wave">
-            <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path d="M0,30 C360,60 720,0 1080,30 C1260,45 1350,30 1440,30 L1440,60 L0,60 Z" fill="currentColor"/></svg>
-        </div>
-        <div class="container">
-            <div class="footer__inner">
-                <div class="footer__col footer__brand">
-                    <img src="portal/imagenes/lo_negro.png" alt="IESTP PAIJÁN" class="footer__logo">
-                    <p class="footer__desc">Formando profesionales técnicos comprometidos con el desarrollo de la región.</p>
-                    <div class="footer__contact">
-                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg> 919490297</span>
-                        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> admision@iestpaijan.edu.pe</span>
-                    </div>
-                </div>
-                <div class="footer__col">
-                    <h4 class="footer__title">Programas</h4>
-                    <ul class="footer__list">
-                        <li><a href="portal/acc/">Administración de Centros de Cómputo</a></li>
-                        <li><a href="portal/enfermeria_tecnica/">Enfermería Técnica</a></li>
-                        <li><a href="portal/pagro/">Producción Agropecuaria</a></li>
-                    </ul>
-                </div>
-                <div class="footer__col">
-                    <h4 class="footer__title">Institución</h4>
-                    <ul class="footer__list">
-                        <li><a href="portal/presentacion/">Presentación</a></li>
-                        <li><a href="portal/resena_historica/">Reseña Histórica</a></li>
-                        <li><a href="portal/organigrama/">Organigrama</a></li>
-                        <li><a href="portal/plana_jerarquica/">Plana Jerárquica</a></li>
-                        <li><a href="portal/planadocente/">Plana Docente</a></li>
-                    </ul>
-                </div>
-                <div class="footer__col">
-                    <h4 class="footer__title">Enlaces</h4>
-                    <ul class="footer__list">
-                        <li><a href="https://registra.minedu.gob.pe/#!/" target="_blank">Registra</a></li>
-                        <li><a href="https://titula.minedu.gob.pe/" target="_blank">Titula</a></li>
-                        <li><a href="https://conecta.minedu.gob.pe/" target="_blank">Conecta</a></li>
-                        <li><a href="https://avanza.minedu.gob.pe/" target="_blank">Avanza</a></li>
-                    </ul>
-                </div>
+    <!-- Modal de noticias -->
+    <div id="news-modal" class="modal">
+        <div class="modal-content">
+            <button class="modal__close" id="modal-close">&times;</button>
+            <div class="modal-content__image">
+                <button class="modal__nav modal__nav--prev" id="modal-prev">&#10094;</button>
+                <img id="modal-img" src="" alt="">
+                <button class="modal__nav modal__nav--next" id="modal-next">&#10095;</button>
             </div>
-            <div class="footer__bottom">
-                <div class="footer__social">
-                    <a href="https://www.facebook.com/iestp.paijan.9" aria-label="Facebook" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-                    </a>
-                    <a href="https://www.youtube.com/@iestppaijan8712" aria-label="YouTube" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-                    </a>
-                    <a href="https://www.tiktok.com/@iestppaijan" aria-label="TikTok" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.92-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.15-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg>
-                    </a>
-                    <a href="https://wa.me/51919490297" aria-label="WhatsApp" target="_blank" rel="noopener noreferrer">
-                        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
-                    </a>
-                </div>
-                <p class="footer__copyright">
-                    &copy; <span id="year"></span> <strong>IESTP PAIJÁN</strong> — Todos los derechos reservados
-                </p>
+            <div class="modal-content__body">
+                <span class="modal-content__category" id="modal-category"></span>
+                <h3 class="modal-content__title" id="modal-title"></h3>
+                <span class="modal-content__date" id="modal-date"></span>
+                <p class="modal-content__text" id="modal-text"></p>
             </div>
         </div>
-    </footer>
+    </div>
 
-    <button id="to-top" class="to-top" aria-label="Volver arriba">↑</button>
-    <a href="https://wa.me/51919490297" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z/></svg>
-    </a>
-    <script src="portal/js/script.js?v=12"></script>
-    <script>
-    (function(){
-      var btn = document.getElementById("to-top");
-      if (!btn) return;
-      function toggle(){
-        var y = window.pageYOffset || document.documentElement.scrollTop;
-        btn.style.display = y > 300 ? "flex" : "none";
-      }
-      window.addEventListener("scroll", toggle);
-      toggle();
-      btn.onclick = function(){ window.scrollTo({ top: 0, behavior: "smooth" }); };
-    })();
-    </script>
-
-<script>(function(){var l=document.getElementById("page-loader");if(l){window.addEventListener("load",function(){l.classList.add("is-hidden")})}})();</script>
+    <script src="portal/js/include.js"></script>
+    <script src="portal/js/script.js?v=13"></script>
 </body>
 
 </html>

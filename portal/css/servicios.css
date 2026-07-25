@@ -1,0 +1,97 @@
+/* ====== SERVICIOS - Consolidated ====== */
+
+/* ====== SECTION BANNER ====== */
+.section-banner {
+  position: relative;
+  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  padding: 3rem 1rem;
+  border-radius: 12px;
+  margin: 2rem auto;
+  text-align: center;
+  overflow: hidden;
+}
+.section-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.88), rgba(50, 8, 12, 0.8));
+  border-radius: 12px;
+}
+.section-banner h1 {
+  position: relative;
+  color: #fff;
+  font-size: 2rem;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  z-index: 1;
+}
+.section-banner h1 i { font-size: 1.8rem; }
+
+/* Sub-section heading */
+.section-subtitle {
+  font-size: 1.6rem;
+  color: var(--primary);
+  text-align: center;
+  margin: 3rem 0 1.5rem;
+  font-weight: 700;
+}
+
+/* ====== SERVICE CARD ====== */
+.servicio-card {
+  max-width: 800px;
+  margin: 0 auto 2rem;
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+}
+.servicio-card h3 {
+  color: var(--primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.servicio-card p {
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 0.8rem;
+}
+.servicio-card ul {
+  list-style: none;
+  padding-left: 0;
+}
+.servicio-card ul li {
+  position: relative;
+  padding-left: 25px;
+  margin-bottom: 0.6rem;
+  font-size: 1rem;
+  color: #444;
+}
+.servicio-card ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+/* ====== SPLIT LAYOUT ====== */
+.servicio-split {
+  display: flex;
+  gap: 1.5rem;
+  max-width: 1000px;
+  margin: 0 auto 2rem;
+}
+.servicio-split .servicio-card {
+  flex: 1;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .servicio-split { flex-direction: column; }
+}
