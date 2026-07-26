@@ -7,7 +7,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   background-attachment: fixed;
   overflow: hidden;
 }
@@ -80,7 +80,7 @@
 /* ====== SECTION BANNER ====== */
 .section-banner {
   position: relative;
-  background: url("../imagenes/frontis.jpg") no-repeat center center/cover;
+  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   background-attachment: fixed;
   padding: 4rem 1rem;
   border-radius: 20px;

@@ -1,54 +1,47 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Noticias - IESTP PAIJÁN</title>
-  <meta name="description" content="Página Oficial de IESTP PAIJÁN." />
-  <link rel="stylesheet" href="../css/styles.css?v=8" />
-  <link rel="stylesheet" href="../css/noticias.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../imagenes/logo-transp.png" type="image/png">
-  <!-- Importa Font Awesome -->
-<link rel="stylesheet" href="../fontawesome/css/all.min.css">
-</head>
-
-<body>
-<div data-include="shell" data-root="../" data-home="../../" data-page="noticias"></div>
-
-
-   <main id="noticias" class="noticias">
-        <div class="container">
-            <h1 class="section-title">Últimas Noticias</h1>
-            
-            <!-- Contenedor dinámico -->
-            <div id="news-feed" class="news-feed"></div>
-        </div>
-    
-  </main>
-
-
-<!-- Modal -->
-  <div id="news-modal" class="modal">
-    <span class="close">&times;</span>
-    <div class="modal-content">
-      <div class="carousel">
-        <button class="prev">&#10094;</button>
-        <img id="modal-img" src="" alt="">
-        <button class="next">&#10095;</button>
-      </div>
-      <h2 id="modal-title"></h2>
-      <p id="modal-date"></p>
-      <p id="modal-text"></p>
-    </div>
-  </div>
-
-<script src="../js/include.js"></script>
-<script src="../js/script.js?v=7"></script>
-<script src="../js/noticias.js"></script>
-</body>
-</html>
-
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Noticias - IESTP PAIJÁN</title>
+  <meta name="description" content="Página Oficial de IESTP PAIJÁN." />
+  <link rel="stylesheet" href="../css/styles.css?v=8" />
+  <link rel="stylesheet" href="../css/noticias.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="icon" href="../imagenes/logo-transp.png" type="image/png">
+  <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+</head>
 
+<body>
+<div data-include="shell" data-root="../" data-home="../../" data-page="noticias"></div>
+
+  <main id="noticias" class="noticias">
+    <div class="container">
+      <h1 class="section-title">Últimas Noticias</h1>
+      <div id="news-feed" class="news-feed"></div>
+    </div>
+  </main>
+
+  <div id="news-modal" class="modal">
+    <button class="modal__close" id="modal-close">&times;</button>
+    <div class="modal-content">
+      <div class="modal-content__image">
+        <button class="modal__nav modal__nav--prev" id="modal-prev">&#10094;</button>
+        <img id="modal-img" src="" alt="">
+        <button class="modal__nav modal__nav--next" id="modal-next">&#10095;</button>
+      </div>
+      <div class="modal-content__body">
+        <span class="modal-content__category" id="modal-category"></span>
+        <h2 id="modal-title"></h2>
+        <span class="modal-content__date" id="modal-date"></span>
+        <p id="modal-text"></p>
+      </div>
+    </div>
+  </div>
+
+<script src="../js/include.js"></script>
+<script src="../js/script.js?v=7"></script>
+</body>
+</html>

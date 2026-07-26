@@ -1,48 +1,95 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Proceso de matrícula - IESTP PAIJÁN</title>
-    <meta name="description" content="Presentación institucional del IESTP PAIJÁN." />
-    <link rel="stylesheet" href="../css/styles.css?v=8" />
-    <link rel="stylesheet" href="../css/matricula.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="icon" href="../imagenes/logo-transp.png" type="image/png">
-    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
-</head>
-
-<body>
-<div data-include="shell" data-root="../" data-home="../../" data-page="matriculas"></div>
-<section class="section-banner">
-        <h1><i class="fas fa-file-signature"></i> Proceso de Matrícula</h1>
-    </section>
-
-    <!-- Sección Matrícula -->
-    <main id="matricula" class="matricula container">
-        <div class="matricula__pdf">
-            <iframe src="../documentos/proceso_matricula/MPA_2025_IESTP_PAIJAN.pdf#toolbar=0" type="application/pdf"
-                width="100%" height="600px" style="border:2px solid #800000; border-radius:10px;" id="pdfFrame">
-            </iframe>
-        </div>
-    </main>
-    <script>
-    // Bloquear clic derecho sobre TODO el documento
-    document.addEventListener("contextmenu", function(e) {
-        // Solo bloquear si hace clic dentro del iframe
-        if (e.target.closest("#pdfFrame")) {
-            e.preventDefault();
-            alert("?? Opción deshabilitada");
-        }
-    });
-    </script>
-
-        <script src="../js/include.js"></script>
-    <script src="../js/script.js?v=7"></script></body>
-
-</html>
-
+﻿<!DOCTYPE html>
+
+<html lang="es">
+
+
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Proceso de matrícula - IESTP PAIJÁN</title>
+
+    <meta name="description" content="Presentación institucional del IESTP PAIJÁN." />
+
+    <link rel="stylesheet" href="../css/styles.css?v=8" />
+
+    <link rel="stylesheet" href="../css/matricula.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <link rel="icon" href="../imagenes/logo-transp.png" type="image/png">
+
+    <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+</head>
+
+
+
+<body>
+
+<div data-include="shell" data-root="../" data-home="../../" data-page="matriculas"></div>
+
+<section class="section-banner">
+
+        <h1><i class="fas fa-file-signature"></i> Proceso de Matrícula</h1>
+
+    </section>
+
+
+
+    <!-- Sección Matrícula -->
+
+    <main id="matricula" class="matricula container">
+
+        <div class="matricula__pdf">
+
+            <iframe src="../documentos/proceso_matricula/MPA_2025_IESTP_PAIJAN.pdf#toolbar=0" type="application/pdf"
+
+                width="100%" height="600px" style="border:2px solid #800000; border-radius:10px;" id="pdfFrame">
+
+            </iframe>
+
+        </div>
+
+    </main>
+
+    <script>
+
+    // Bloquear clic derecho sobre TODO el documento
+
+    document.addEventListener("contextmenu", function(e) {
+
+        // Solo bloquear si hace clic dentro del iframe
+
+        if (e.target.closest("#pdfFrame")) {
+
+            e.preventDefault();
+
+            alert("?? Opción deshabilitada");
+
+        }
+
+    });
+
+    </script>
+
+
+
+        <script src="../js/include.js"></script>
+
+    <script src="../js/script.js?v=7"></script></body>
+
+
+
+</html>
+
+
+
 

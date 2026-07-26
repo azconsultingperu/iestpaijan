@@ -6,118 +6,129 @@
   <title>Noticias - IESTP PAIJÁN</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/noticias.css" />
   <style>
     body { margin: 0; background: transparent; }
   </style>
 </head>
 <body>
-   <main id="noticias" class="noticias">
-        <div class="container">
-            <div id="news-feed" class="news-feed"></div>
-        </div>
+  <main id="noticias" class="noticias">
+    <div class="container">
+      <div id="news-feed" class="news-feed"></div>
+    </div>
   </main>
 
   <div id="news-modal" class="modal">
-    <button class="close">&times;</button>
+    <button class="modal__close" id="modal-close">&times;</button>
     <div class="modal-content">
-      <div class="carousel">
-        <button class="prev">&#10094;</button>
+      <div class="modal-content__image">
+        <button class="modal__nav modal__nav--prev" id="modal-prev">&#10094;</button>
         <img id="modal-img" src="" alt="">
-        <button class="next">&#10095;</button>
+        <button class="modal__nav modal__nav--next" id="modal-next">&#10095;</button>
       </div>
-      <h3 id="modal-title"></h3>
-      <span class="modal-date" id="modal-date"></span>
-      <p id="modal-text"></p>
+      <div class="modal-content__body">
+        <span class="modal-content__category" id="modal-category"></span>
+        <h3 id="modal-title"></h3>
+        <span class="modal-content__date" id="modal-date"></span>
+        <p id="modal-text"></p>
+      </div>
     </div>
   </div>
 
 <script>
 const noticias = [
-  { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026.", imagen: ["../imagenes/noticias/aviso-2026-1.jpeg", "../imagenes/noticias/aviso-2026-1.jpeg"] },
-  { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: ["../imagenes/noticias/fallesimiento_07_05_2026.jpeg", "../imagenes/noticias/fallesimiento_07_05_2026.jpeg"] },
-  { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: ["../imagenes/noticias/dia_del_trabajador.jpeg", "../imagenes/noticias/dia_del_trabajador.jpeg"] },
-  { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: ["../imagenes/noticias/graduacion2026.jpg", "../imagenes/noticias/integrantes2026.jpg"] },
-  { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: ["../imagenes/admision/primer_admision/1.jpeg"] },
-  { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: ["../imagenes/noticias/inicio_clases20252.jpg"] },
+  { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026.", imagen: ["../imagenes/noticias/aviso-2026-1.jpeg", "../imagenes/noticias/aviso-2026-1.jpeg"], categoria: "comunicado" },
+  { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: ["../imagenes/noticias/fallesimiento_07_05_2026.jpeg", "../imagenes/noticias/fallesimiento_07_05_2026.jpeg"], categoria: "comunicado" },
+  { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: ["../imagenes/noticias/dia_del_trabajador.jpeg", "../imagenes/noticias/dia_del_trabajador.jpeg"], categoria: "evento" },
+  { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: ["../imagenes/noticias/graduacion2026.jpg", "../imagenes/noticias/integrantes2026.jpg"], categoria: "evento" },
+  { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: ["../imagenes/admision/primer_admision/1.jpeg"], categoria: "admision" },
+  { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: ["../imagenes/noticias/inicio_clases20252.jpg"], categoria: "admision" },
 ];
 
 (function() {
   const feed = document.getElementById("news-feed");
   if (!feed) { console.warn("noticias: #news-feed no encontrado"); return; }
+  if (feed.children.length > 0) return;
 
   const modal = document.getElementById("news-modal");
   const modalImg = document.getElementById("modal-img");
   const modalTitle = document.getElementById("modal-title");
   const modalDate = document.getElementById("modal-date");
   const modalText = document.getElementById("modal-text");
-  const closeBtn = document.querySelector(".close");
-  const prevBtn = document.querySelector(".prev");
-  const nextBtn = document.querySelector(".next");
+  const modalCategory = document.getElementById("modal-category");
+  const closeBtn = document.getElementById("modal-close");
+  const prevBtn = document.getElementById("modal-prev");
+  const nextBtn = document.getElementById("modal-next");
 
-  let currentImages = [];
-  let currentIndex = 0;
+  let currentArticleIndex = 0;
 
   noticias.forEach(function(noticia, index) {
     const card = document.createElement("div");
     card.className = "news-card";
     card.style.setProperty("--i", index);
     card.innerHTML =
-      '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" class="news-img" loading="lazy">' +
-      '<div class="news-content">' +
-        '<h3>' + noticia.titulo + '</h3>' +
-        '<span class="news-date">' + noticia.fecha + '</span>' +
-        '<p>' + noticia.contenido + '</p>' +
+      '<div class="news-card__image">' +
+        '<span class="news-card__category news-card__category--' + noticia.categoria + '">' + noticia.categoria + '</span>' +
+        '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" loading="lazy">' +
+      '</div>' +
+      '<div class="news-card__content">' +
+        '<span class="news-card__date">' + noticia.fecha + '</span>' +
+        '<h3 class="news-card__title">' + noticia.titulo + '</h3>' +
+        '<p class="news-card__excerpt">' + noticia.contenido + '</p>' +
       '</div>';
 
     card.addEventListener("click", function() {
-      modal.style.display = "flex";
+      if (!modal) return;
+      currentArticleIndex = index;
+      showArticle(index);
+      modal.classList.add('is-open');
       document.body.style.overflow = "hidden";
-      currentImages = noticia.imagen;
-      currentIndex = 0;
-      showImage(currentIndex);
-      modalTitle.textContent = noticia.titulo;
-      modalDate.textContent = noticia.fecha;
-      modalText.textContent = noticia.contenido;
     });
 
     feed.appendChild(card);
   });
 
-  function showImage(index) {
-    if (currentImages && currentImages[index]) {
-      modalImg.src = currentImages[index];
-    }
+  function showArticle(index) {
+    const article = noticias[index];
+    if (!article) return;
+    if (modalImg) modalImg.src = article.imagen[0];
+    if (modalTitle) modalTitle.textContent = article.titulo;
+    if (modalDate) modalDate.textContent = article.fecha;
+    if (modalText) modalText.textContent = article.contenido;
+    if (modalCategory) modalCategory.textContent = article.categoria;
   }
 
   if (prevBtn) prevBtn.addEventListener("click", function() {
-    if (!currentImages.length) return;
-    currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-    showImage(currentIndex);
+    if (!noticias.length) return;
+    currentArticleIndex = (currentArticleIndex - 1 + noticias.length) % noticias.length;
+    showArticle(currentArticleIndex);
   });
 
   if (nextBtn) nextBtn.addEventListener("click", function() {
-    if (!currentImages.length) return;
-    currentIndex = (currentIndex + 1) % currentImages.length;
-    showImage(currentIndex);
+    if (!noticias.length) return;
+    currentArticleIndex = (currentArticleIndex + 1) % noticias.length;
+    showArticle(currentArticleIndex);
   });
 
   if (closeBtn) closeBtn.addEventListener("click", function() {
-    modal.style.display = "none";
+    if (!modal) return;
+    modal.classList.remove('is-open');
     document.body.style.overflow = "";
   });
 
-  window.addEventListener("click", function(e) {
-    if (e.target === modal) {
-      modal.style.display = "none";
-      document.body.style.overflow = "";
-    }
-  });
+  if (modal) {
+    modal.addEventListener("click", function(e) {
+      if (e.target === modal) {
+        modal.classList.remove('is-open');
+        document.body.style.overflow = "";
+      }
+    });
+  }
 
   document.addEventListener("keydown", function(e) {
-    if (e.key === "Escape") {
-      modal.style.display = "none";
+    if (e.key === "Escape" && modal && modal.classList.contains('is-open')) {
+      modal.classList.remove('is-open');
       document.body.style.overflow = "";
     }
   });

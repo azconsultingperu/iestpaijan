@@ -1,76 +1,151 @@
-﻿<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DONACIONES E INVERSIONES - IESTP PAIJÁN</title>
-  <meta name="description" content="Presentación institucional del IESTP PAIJÁN." />
-  <link rel="stylesheet" href="../css/styles.css?v=8" />
-  <link rel="stylesheet" href="../css/donaciones.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="icon" href="../imagenes/logo-transp.png" type="image/png">
-  <link rel="stylesheet" href="../fontawesome/css/all.min.css">
-</head>
-
-<body>
-<div data-include="shell" data-root="../" data-home="../../" data-page="donaciones"></div>
-<section class="section-banner">
-  <h1><i class="fas fa-donate"></i> Donaciones e Inversiones</h1>
-</section>
-
-<!-- Sección donaciones -->
-<main id="donaciones" class="donaciones container">
-
-  <!-- Tabs -->
-  <div class="tabs">
-    <button class="tab-button active" data-tab="inversiones-panel">Inversiones y Reinversiones</button>
-    <button class="tab-button" data-tab="donaciones-panel">Donaciones</button>
-    <button class="tab-button" data-tab="infraestructura-panel">Obras de Infraestructura</button>
-  </div>
-
-  <!-- Contenido de tabs -->
-  <div class="tab-content">
-    <div id="inversiones-panel" class="tab-panel active">
-      <h2>Inversiones</h2>
-      <p>No se cuenta con inversiones e reinversiones en los últimos años.</p>
-    </div>
-
-    <div id="donaciones-panel" class="tab-panel">
-      <h2>Donaciones</h2>
-      <p>No se cuenta con donaciones registradas actualmente.</p>
-    </div>
-
-    <div id="infraestructura-panel" class="tab-panel">
-      <h2>Obras de Infraestructura</h2>
-      <p>No se cuenta con obras de infraestructura registradas actualmente.</p>
-    </div>
-  </div>
-
-</main>
-
-<script>
-  const tabButtons = document.querySelectorAll(".tab-button");
-  const tabPanels = document.querySelectorAll(".tab-panel");
-
-  tabButtons.forEach(button => {
-    button.addEventListener("click", () => {
-      // Quitar activo de todos
-      tabButtons.forEach(btn => btn.classList.remove("active"));
-      tabPanels.forEach(panel => panel.classList.remove("active"));
-
-      // Activar el seleccionado
-      button.classList.add("active");
-      const tabId = button.getAttribute("data-tab");
-      document.getElementById(tabId).classList.add("active");
-    });
-  });
-</script>
-
-      <script src="../js/include.js"></script>
-    <script src="../js/script.js?v=7"></script></body>
-</html>
-
-
+﻿<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+  <meta charset="utf-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>DONACIONES E INVERSIONES - IESTP PAIJÁN</title>
+
+  <meta name="description" content="Presentación institucional del IESTP PAIJÁN." />
+
+  <link rel="stylesheet" href="../css/styles.css?v=8" />
+
+  <link rel="stylesheet" href="../css/donaciones.css" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <link rel="icon" href="../imagenes/logo-transp.png" type="image/png">
+
+  <link rel="stylesheet" href="../fontawesome/css/all.min.css">
+
+</head>
+
+
+
+<body>
+
+<div data-include="shell" data-root="../" data-home="../../" data-page="donaciones"></div>
+
+<section class="section-banner">
+
+  <h1><i class="fas fa-donate"></i> Donaciones e Inversiones</h1>
+
+</section>
+
+
+
+<!-- Sección donaciones -->
+
+<main id="donaciones" class="donaciones container">
+
+
+
+  <!-- Tabs -->
+
+  <div class="tabs">
+
+    <button class="tab-button active" data-tab="inversiones-panel">Inversiones y Reinversiones</button>
+
+    <button class="tab-button" data-tab="donaciones-panel">Donaciones</button>
+
+    <button class="tab-button" data-tab="infraestructura-panel">Obras de Infraestructura</button>
+
+  </div>
+
+
+
+  <!-- Contenido de tabs -->
+
+  <div class="tab-content">
+
+    <div id="inversiones-panel" class="tab-panel active">
+
+      <h2>Inversiones</h2>
+
+      <p>No se cuenta con inversiones e reinversiones en los últimos años.</p>
+
+    </div>
+
+
+
+    <div id="donaciones-panel" class="tab-panel">
+
+      <h2>Donaciones</h2>
+
+      <p>No se cuenta con donaciones registradas actualmente.</p>
+
+    </div>
+
+
+
+    <div id="infraestructura-panel" class="tab-panel">
+
+      <h2>Obras de Infraestructura</h2>
+
+      <p>No se cuenta con obras de infraestructura registradas actualmente.</p>
+
+    </div>
+
+  </div>
+
+
+
+</main>
+
+
+
+<script>
+
+  const tabButtons = document.querySelectorAll(".tab-button");
+
+  const tabPanels = document.querySelectorAll(".tab-panel");
+
+
+
+  tabButtons.forEach(button => {
+
+    button.addEventListener("click", () => {
+
+      // Quitar activo de todos
+
+      tabButtons.forEach(btn => btn.classList.remove("active"));
+
+      tabPanels.forEach(panel => panel.classList.remove("active"));
+
+
+
+      // Activar el seleccionado
+
+      button.classList.add("active");
+
+      const tabId = button.getAttribute("data-tab");
+
+      document.getElementById(tabId).classList.add("active");
+
+    });
+
+  });
+
+</script>
+
+
+
+      <script src="../js/include.js"></script>
+
+    <script src="../js/script.js?v=7"></script></body>
+
+</html>
+
+
+
+
+
 
