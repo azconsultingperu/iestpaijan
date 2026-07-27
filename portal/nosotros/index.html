@@ -1,12 +1,14 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Nosotros - IESTP PAIJÁN</title>
-  <meta name="description" content="Información institucional del IESTP PAIJÁN." />
+  <meta name="description" content="Información institucional del IESTP Paiján: presentación, reseña histórica, misión, visión, valores, organigrama, plana jerárquica y docente." />
+  <link rel="canonical" href="https://www.iestpaijan.edu.pe/portal/nosotros/" />
   <link rel="stylesheet" href="../css/styles.css?v=8" />
   <link rel="stylesheet" href="../css/nosotros.css" />
+  <link rel="stylesheet" href="../css/jerarquica.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
@@ -31,8 +33,10 @@
   </div>
 </section>
 
+
+
 <!-- Presentación -->
-<section class="pres-about" id="acerca">
+<section class="pres-about reveal-on-scroll" id="acerca">
   <div class="container">
     <div class="pres-about__inner">
       <div class="pres-about__image">
@@ -53,33 +57,33 @@
 </section>
 
 <!-- Pilares -->
-<section class="pres-values">
+<section class="pres-values reveal-on-scroll" id="pilares">
   <div class="container">
     <h2 class="pres-values__title">Nuestros Pilares</h2>
     <p class="pres-values__subtitle">Principios que guían nuestra formación profesional</p>
     <div class="pres-values__grid">
-      <div class="pres-values__card">
+      <div class="pres-values__card reveal-on-scroll" style="--delay: 0s;">
         <div class="pres-values__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
         </div>
         <h3>Calidad Educativa</h3>
         <p>Formación técnica moderna y pertinente, alineada con las exigencias del mercado laboral y los estándares nacionales.</p>
       </div>
-      <div class="pres-values__card">
+      <div class="pres-values__card reveal-on-scroll" style="--delay: 0.1s;">
         <div class="pres-values__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
         </div>
         <h3>Docentes Calificados</h3>
         <p>Planilla docente con amplia experiencia académica y profesional, comprometida con la excelencia educativa.</p>
       </div>
-      <div class="pres-values__card">
+      <div class="pres-values__card reveal-on-scroll" style="--delay: 0.2s;">
         <div class="pres-values__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
         </div>
         <h3>Compromiso Social</h3>
         <p>Vocación de servicio y responsabilidad con el desarrollo sostenible de nuestra comunidad y la región.</p>
       </div>
-      <div class="pres-values__card">
+      <div class="pres-values__card reveal-on-scroll" style="--delay: 0.3s;">
         <div class="pres-values__icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
         </div>
@@ -91,10 +95,10 @@
 </section>
 
 <!-- Reseña Histórica -->
-<section class="section-banner">
-  <h1><i class="fas fa-book-open"></i> Reseña Histórica</h1>
+<section class="section-banner reveal-on-scroll">
+  <h2><i class="fas fa-book-open"></i> Reseña Histórica</h2>
 </section>
-<section id="resena" class="presentacion">
+<section id="resena" class="presentacion reveal-on-scroll">
   <div class="presentacion__contenido">
     <div class="presentacion__texto">
       <h2>Instituto de Educación Superior Tecnológico Público Paiján</h2>
@@ -116,10 +120,10 @@
 </section>
 
 <!-- Misión, Visión y Valores -->
-<section class="section-banner">
-  <h1><i class="fas fa-bullseye"></i> Misión, Visión y Valores</h1>
+<section class="section-banner section-banner--gold reveal-on-scroll">
+  <h2><i class="fas fa-bullseye"></i> Misión, Visión y Valores</h2>
 </section>
-<section id="mision-vision" class="mision_vision container">
+<section id="mision-vision" class="mision_vision container reveal-on-scroll">
   <div class="mision_vision__contenido">
     <div class="mision_vision__item">
       <h2><i class="fas fa-flag"></i> Misión</h2>
@@ -145,31 +149,32 @@
 </section>
 
 <!-- Organigrama -->
-<section class="section-banner">
-  <h1><i class="fas fa-sitemap"></i> Organigrama</h1>
+<section class="section-banner section-banner--dark reveal-on-scroll">
+  <h2><i class="fas fa-sitemap"></i> Organigrama</h2>
 </section>
-<section id="organigrama" class="organigrama container">
-  <div class="organigrama__imagen">
+<section id="organigrama" class="organigrama container reveal-on-scroll">
+  <div class="organigrama__imagen" id="org-chart" style="cursor: zoom-in;">
     <picture><source srcset="../imagenes/organigrama-iestp-paijan.avif" type="image/avif"><source srcset="../imagenes/organigrama-iestp-paijan.webp" type="image/webp"><img src="../imagenes/organigrama-iestp-paijan.png" alt="Organigrama del IESTP Paiján"></picture>
+    <span style="display: block; margin-top: 0.5rem; font-size: 0.85rem; color: var(--text-muted);"><i class="fas fa-search-plus"></i> Haz clic para ampliar</span>
   </div>
 </section>
 
 <!-- Plana Jerárquica -->
-<section class="section-banner">
-  <h1><i class="fas fa-user-tie"></i> Plana Jerárquica</h1>
+<section class="section-banner section-banner--light reveal-on-scroll">
+  <h2><i class="fas fa-user-tie"></i> Plana Jerárquica</h2>
 </section>
-<section id="jerarquica" class="jerarquica container">
+<section id="jerarquica" class="jerarquica container reveal-on-scroll">
 </section>
 
 <!-- Plana Docente -->
-<section class="section-banner">
-  <h1><i class="fas fa-chalkboard-teacher"></i> Plana Docente</h1>
+<section class="section-banner reveal-on-scroll">
+  <h2><i class="fas fa-chalkboard-teacher"></i> Plana Docente</h2>
 </section>
-<section id="docente" class="docente container">
+<section id="docente" class="docente container reveal-on-scroll">
 </section>
 
 <!-- CTA -->
-<section class="pres-cta">
+<section class="pres-cta" id="cta">
   <div class="container">
     <h2>¿Listo para formar parte del IESTP PAIJÁN?</h2>
     <p>Inicia tu camino hacia una carrera técnica exitosa</p>
@@ -180,6 +185,12 @@
   </div>
 </section>
 
+<div class="modal-overlay" id="org-modal">
+  <button class="modal-overlay__close" id="org-modal-close" aria-label="Cerrar">&times;</button>
+  <img class="modal-overlay__image" id="org-modal-img" src="" alt="Organigrama IESTP Paiján">
+</div>
+
+<script src="../js/conectores.js"></script>
 <script src="../js/nosotros.js"></script>
 <script src="../js/include.js"></script>
 <script src="../js/script.js?v=7"></script>

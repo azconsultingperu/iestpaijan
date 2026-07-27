@@ -61,17 +61,17 @@
       ]
     };
 
-    Object.keys(niveles).forEach(function (nivel) {
+    var nivelKeys = Object.keys(niveles);
+    nivelKeys.forEach(function (nivel, idx) {
       var seccion = document.createElement("section");
       seccion.classList.add("nivel");
-      var titulo = document.createElement("h2");
-      seccion.appendChild(titulo);
+      if (idx === 0) seccion.classList.add("nivel--root");
       var cardsDiv = document.createElement("div");
       cardsDiv.classList.add("cards");
       niveles[nivel].forEach(function (persona) {
         var card = document.createElement("div");
         card.classList.add("card");
-        card.innerHTML = '<img src="' + persona.foto + '" alt="' + persona.nombre + '"><h3>' + persona.cargo + '</h3><p>' + persona.nombre + '</p>';
+        card.innerHTML = '<img src="' + persona.foto + '" alt="' + persona.nombre + '" loading="lazy"><h3>' + persona.cargo + '</h3><p>' + persona.nombre + '</p>';
         cardsDiv.appendChild(card);
       });
       seccion.appendChild(cardsDiv);
@@ -152,4 +152,74 @@
     });
   }
 
+  /* ── Organigrama Modal ── */
+  var orgChart = document.getElementById("org-chart");
+  var orgModal = document.getElementById("org-modal");
+  var orgModalImg = document.getElementById("org-modal-img");
+  var orgModalClose = document.getElementById("org-modal-close");
+
+  function openOrgModal() {
+    if (!orgModal || !orgModalImg) return;
+    var img = orgChart.querySelector("img");
+    if (img) orgModalImg.src = img.src;
+    orgModal.classList.add("is-open");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeOrgModal() {
+    if (!orgModal) return;
+    orgModal.classList.remove("is-open");
+    document.body.style.overflow = "";
+  }
+
+  if (orgChart && orgModal) {
+    orgChart.addEventListener("click", openOrgModal);
+  }
+
+  if (orgModalClose) {
+    orgModalClose.addEventListener("click", closeOrgModal);
+  }
+
+  if (orgModal) {
+    orgModal.addEventListener("click", function (e) {
+      if (e.target === orgModal) closeOrgModal();
+    });
+  }
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && orgModal && orgModal.classList.contains("is-open")) closeOrgModal();
+  });
+
+  /* ── Page subnav active link ── */
+  if (typeof dibujarConectores === 'function') dibujarConectores();
+  var subnavLinks = document.querySelectorAll(".page-subnav__link");
+  if (subnavLinks.length) {
+    var sections = [];
+    subnavLinks.forEach(function (link) {
+      var href = link.getAttribute("href");
+      if (href && href.startsWith("#")) {
+        var section = document.getElementById(href.slice(1));
+        if (section) sections.push({ link: link, section: section });
+      }
+    });
+
+    function updateActiveLink() {
+      var scrollY = window.scrollY + 120;
+      var current = null;
+      sections.forEach(function (item) {
+        var top = item.section.offsetTop;
+        var bottom = top + item.section.offsetHeight;
+        if (scrollY >= top && scrollY < bottom) {
+          current = item.link;
+        }
+      });
+      if (current) {
+        subnavLinks.forEach(function (l) { l.classList.remove("is-active"); });
+        current.classList.add("is-active");
+      }
+    }
+
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    window.addEventListener("load", updateActiveLink);
+  }
 })();

@@ -1,11 +1,12 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="es">
 
 <head>
    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>IESTP PAIJÁN</title>
-    <meta name="description" content="Página Oficial de IESTP PAIJÁN." />
+    <title>IESTP Paiján - Instituto de Educación Superior Tecnológico Público</title>
+    <meta name="description" content="IESTP Paiján: Instituto de Educación Superior Tecnológico Público en Paiján, La Libertad. Programas gratuitos en Administración de Centros de Cómputo, Producción Agropecuaria y Enfermería Técnica." />
+    <link rel="canonical" href="https://www.iestpaijan.edu.pe/" />
     <link rel="stylesheet" href="portal/css/styles.css?v=99" />
     <link rel="stylesheet" href="portal/css/noticias.css?v=14" />
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,6 +23,8 @@
     <main id="inicio">
         <!-- Hero -->
         <section class="hero hero--static" id="hero">
+            <!-- Capa de imagen separada para Ken Burns sin lag -->
+            <div class="hero__bg" aria-hidden="true"></div>
             <div class="container hero__content">
                 <div class="hero__body">
                     <h1 class="hero__title"><span class="hero__title-accent">Comprometidos</span> con la Calidad y el Desarrollo de Nuestra Comunidad</h1>
@@ -58,9 +61,12 @@
                         <p>Docentes Calificados</p>
                     </div>
                 </div>
-                <a href="#beneficios" class="hero__scroll-btn">
+                <a href="#beneficios" class="hero__scroll-btn" aria-label="Desplázate a beneficios">
+                    <svg class="hero__scroll-mouse" viewBox="0 0 24 36" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="6" y="2" width="12" height="22" rx="6"/>
+                        <line class="hero__scroll-wheel" x1="12" y1="7" x2="12" y2="13"/>
+                    </svg>
                     <span>Desplázate</span>
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg>
                 </a>
             </div>
             <div class="hero__shapes" aria-hidden="true">
@@ -370,7 +376,7 @@
             <button class="modal__close" id="modal-close">&times;</button>
             <div class="modal-content__image">
                 <button class="modal__nav modal__nav--prev" id="modal-prev">&#10094;</button>
-                <img id="modal-img" src="" alt="">
+                <img id="modal-img" src="" alt="Imagen de la noticia">
                 <button class="modal__nav modal__nav--next" id="modal-next">&#10095;</button>
             </div>
             <div class="modal-content__body">

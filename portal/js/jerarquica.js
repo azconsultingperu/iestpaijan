@@ -24,18 +24,16 @@ const niveles = {
   6: [
     { cargo: "Personal Administrativo", nombre: "Sr. Lorenzo Chiclote Diaz", foto: "../imagenes/docentes/lorenzo.jpeg" },
     { cargo: "Personal Administrativo", nombre: "Sr. Eladio Guerra Toribio", foto: "../imagenes/docentes/icon_person.jpg" }
-    ]
+  ]
 };
 
 const contenedor = document.getElementById("jerarquica");
 
-Object.keys(niveles).forEach(nivel => {
+Object.keys(niveles).forEach((nivel, idx) => {
   const seccion = document.createElement("section");
   seccion.classList.add("nivel");
 
-  const titulo = document.createElement("h2");
-  //titulo.textContent = `Nivel ${nivel}`;
-  seccion.appendChild(titulo);
+  if (idx === 0) seccion.classList.add("nivel--root");
 
   const cardsDiv = document.createElement("div");
   cardsDiv.classList.add("cards");
@@ -45,7 +43,7 @@ Object.keys(niveles).forEach(nivel => {
     card.classList.add("card");
 
     card.innerHTML = `
-      <img src="${persona.foto}" alt="${persona.nombre}">
+      <img src="${persona.foto}" alt="${persona.nombre}" loading="lazy">
       <h3>${persona.cargo}</h3>
       <p>${persona.nombre}</p>
     `;
@@ -56,3 +54,5 @@ Object.keys(niveles).forEach(nivel => {
   seccion.appendChild(cardsDiv);
   contenedor.appendChild(seccion);
 });
+
+if (typeof dibujarConectores === 'function') dibujarConectores();

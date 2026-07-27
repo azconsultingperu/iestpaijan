@@ -47,7 +47,9 @@ function initHeaderNav() {
     if (overlay) overlay.classList.add('is-visible');
     document.body.classList.add('nav-open');
     document.documentElement.style.overflow = 'hidden';
-    document.body.style.paddingRight = scrollbarWidth + 'px';
+    if (scrollbarWidth > 0) {
+      document.body.style.paddingRight = scrollbarWidth + 'px';
+    }
   }
 
   function toggleNav() {
@@ -75,9 +77,27 @@ function initHeaderNav() {
     });
   }
 
-  var navLinks = document.querySelectorAll('#main-nav a');
+  var navLinks = document.querySelectorAll('#main-nav > .nav__list > .nav__item > a');
   for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].addEventListener('click', function () {
+    navLinks[i].addEventListener('click', function (e) {
+      if (window.innerWidth <= 900) {
+        var parentLi = this.closest('.has-submenu');
+        if (parentLi && parentLi.querySelector('.submenu')) {
+          e.preventDefault();
+          var alreadyOpen = parentLi.classList.contains('is-open');
+          var allSubs = parentLi.closest('.nav__list').querySelectorAll('.has-submenu.is-open');
+          for (var s = 0; s < allSubs.length; s++) allSubs[s].classList.remove('is-open');
+          if (!alreadyOpen) parentLi.classList.add('is-open');
+        } else {
+          closeNav();
+        }
+      }
+    });
+  }
+
+  var subLinks = document.querySelectorAll('#main-nav .submenu a');
+  for (var i = 0; i < subLinks.length; i++) {
+    subLinks[i].addEventListener('click', function () {
       if (window.innerWidth <= 900) closeNav();
     });
   }
@@ -87,16 +107,6 @@ function initHeaderNav() {
       closeNav();
     }
   });
-
-  var submenuParents = document.querySelectorAll('.nav__item.has-submenu > .nav__link');
-  for (var j = 0; j < submenuParents.length; j++) {
-    submenuParents[j].addEventListener('click', function (e) {
-      if (window.innerWidth <= 900) {
-        e.preventDefault();
-        this.closest('.nav__item').classList.toggle('is-open');
-      }
-    });
-  }
 
   window.addEventListener('hashchange', function () {
     updateHeader();
@@ -420,7 +430,7 @@ function initCounters() {
     var years = new Date().getFullYear() - 1987;
     yearsEl.setAttribute('data-target', years);
   }
-  var counters = document.querySelectorAll('[data-target]');
+  var counters = document.querySelectorAll('[data-target]:not([data-counter="manual"])');
   if (!counters.length) return;
   function animate(el, delay) {
     var target = parseInt(el.getAttribute('data-target'), 10);

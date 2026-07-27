@@ -5,8 +5,6 @@
   position: relative;
   background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   padding: 3rem 1rem;
-  border-radius: 12px;
-  margin: 2rem auto;
   text-align: center;
   overflow: hidden;
 }
@@ -15,7 +13,6 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(var(--primary-rgb), 0.88), rgba(50, 8, 12, 0.8));
-  border-radius: 12px;
 }
 .section-banner h1 {
   position: relative;
@@ -102,16 +99,59 @@
   width: 200px;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0,0,0,0.06);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+.stat-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--primary), var(--gold), var(--primary));
+  background-size: 200% 100%;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(122,16,32,0.1);
+}
+.stat-card:hover::after {
+  transform: scaleX(1);
 }
 .stat-card i {
   font-size: 2rem;
   color: var(--primary);
   margin-bottom: 0.5rem;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.stat-card:hover i {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.15);
 }
 .stat-card .numero {
   font-size: 2.5rem;
   font-weight: 800;
   color: var(--primary);
+  display: inline-block;
+}
+.stat-card .numero.is-complete {
+  animation: numPop 0.2s ease;
+}
+.stat-card .numero.is-settled {
+  color: var(--primary);
+}
+@keyframes numPop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.25); }
+  100% { transform: scale(1); }
 }
 .stat-card p {
   margin: 0.3rem 0 0;

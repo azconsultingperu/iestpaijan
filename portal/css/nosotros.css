@@ -1,16 +1,27 @@
 /* ====== NOSOTROS - Consolidated ====== */
 
+/* ── Anchor scroll offset for sticky header + subnav ── */
+#acerca, #pilares, #resena, #mision-vision, #organigrama, #jerarquica, #docente, #cta {
+  scroll-margin-top: 130px;
+}
+
+@media (max-width: 768px) {
+  #acerca, #pilares, #resena, #mision-vision, #organigrama, #jerarquica, #docente, #cta {
+    scroll-margin-top: 110px;
+  }
+}
+
 /* ====== SECTION BANNER ====== */
 .section-banner {
   position: relative;
   background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   background-attachment: fixed;
   padding: 5rem 1rem;
-  border-radius: 20px;
-  margin: 3rem auto;
+  /* border-radius: 20px; */
+  /* margin: 3rem auto; */
   text-align: center;
   overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+  /* box-shadow: 0 20px 60px rgba(0,0,0,0.12); */
 }
 
 .section-banner::before {
@@ -20,7 +31,7 @@
   background:
     radial-gradient(ellipse 60% 50% at 50% 40%, rgba(var(--gold-rgb),0.1) 0%, transparent 60%),
     linear-gradient(135deg, rgba(var(--primary-rgb), 0.92), rgba(50, 8, 12, 0.85));
-  border-radius: 20px;
+  /* border-radius: 20px; */
 }
 
 .section-banner h1 {
@@ -543,75 +554,6 @@
   padding: 2rem 0 4rem;
 }
 
-.nivel:nth-child(odd) {
-  background: rgba(var(--primary-rgb),0.03);
-  padding: 2rem;
-  border-radius: 20px;
-}
-
-.nivel {
-  text-align: center;
-}
-
-.nivel h2 {
-  font-size: 1.4rem;
-  margin-bottom: 1.2rem;
-  color: var(--text);
-  font-weight: 700;
-}
-
-.cards {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.card {
-  background: var(--bg-card);
-  border-radius: 20px;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.06);
-  padding: 2rem 1.5rem;
-  width: 260px;
-  text-align: center;
-  border: 1px solid var(--border);
-  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease;
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 16px 40px rgba(0,0,0,0.1);
-  border-color: rgba(var(--primary-rgb),0.15);
-}
-
-.card img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin: 0 auto 1rem;
-  display: block;
-  border: 4px solid var(--primary);
-  transition: transform 0.4s ease;
-}
-
-.card:hover img {
-  transform: scale(1.05);
-}
-
-.card h3 {
-  font-size: 1.15rem;
-  margin: 10px 0 6px;
-  font-weight: 600;
-  color: var(--text);
-}
-
-.card p {
-  font-size: 0.95rem;
-  color: var(--text-muted);
-  margin: 0;
-}
-
 /* ====== PLANA DOCENTE ====== */
 .docente {
   max-width: 1200px;
@@ -755,8 +697,6 @@
   }
   .pres-about__image img { height: 280px; }
   .pres-values__grid { grid-template-columns: repeat(2, 1fr); }
-  .card { width: 220px; }
-  .card img { width: 100px; height: 100px; }
 }
 
 @media (max-width: 768px) {
@@ -768,7 +708,6 @@
   .presentacion__contenido { flex-direction: column; }
   .presentacion__texto h2 { font-size: 1.3rem; }
   .docente__area h2 { font-size: 1.3rem; }
-  .card { width: 100%; max-width: 350px; }
   .mision_vision__item { padding: 1.5rem; }
 }
 

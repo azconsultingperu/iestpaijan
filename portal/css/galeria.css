@@ -3,8 +3,6 @@
   position: relative;
   background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   padding: 3rem 1rem;
-  border-radius: 12px;
-  margin: 2rem auto;
   text-align: center;
   overflow: hidden;
 }
@@ -15,7 +13,6 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(122, 16, 32, 0.88), rgba(50, 8, 12, 0.8));
-  border-radius: 12px;
 }
 
 .section-banner h1 {
@@ -82,7 +79,37 @@
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.album img:hover {
+.album-item {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.album-item__zoom {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.album-item__zoom svg {
+  width: 36px;
+  height: 36px;
+  color: #fff;
+  filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+}
+
+.album-item:hover .album-item__zoom {
+  opacity: 1;
+}
+
+.album-item:hover img {
   transform: scale(1.07);
   box-shadow: 0 6px 15px rgba(0,0,0,0.25);
 }
@@ -97,6 +124,7 @@
   align-items: center;
   z-index: 2000;
   animation: fadeIn 0.3s ease;
+  overflow: hidden;
 }
 
 .modal__content {
@@ -111,6 +139,19 @@
   border-radius: 14px;
   box-shadow: 0 8px 25px rgba(0,0,0,0.5);
   animation: zoomIn 0.3s ease;
+  transition: transform 0.3s ease;
+  cursor: zoom-in;
+  user-select: none;
+  -webkit-user-drag: none;
+}
+
+.modal__content.is-zoomed img {
+  cursor: grab;
+}
+
+.modal__content.is-zoomed.is-panning img {
+  cursor: grabbing;
+  transition: none;
 }
 
 .modal__content p {
@@ -121,43 +162,98 @@
   font-weight: 400;
 }
 
-/* Botón cerrar */
-.modal__close {
+/* Botones cerrar y zoom */
+.modal__close,
+.modal__zoom {
   position: absolute;
-  top: -40px;
-  right: -10px;
-  font-size: 2.2rem;
+  top: 1rem;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.35);
   color: #fff;
+  border: none;
   cursor: pointer;
-  font-weight: bold;
-  transition: color 0.3s ease;
+  transition: background 0.2s ease;
+  z-index: 10;
 }
 
-.modal__close:hover {
-  color: #ff5252;
+.modal__close:hover,
+.modal__zoom:hover {
+  background: #7a1020;
+}
+
+.modal__close {
+  right: 1rem;
+  font-size: 1.4rem;
+  line-height: 1;
+}
+
+.modal__zoom {
+  right: 3.8rem;
+}
+
+.modal__zoom svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Indicador de zoom */
+.modal__zoom-level {
+  position: absolute;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0,0,0,0.5);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: 20px;
+  z-index: 10;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+  pointer-events: none;
+}
+.modal__zoom-level.is-visible {
+  opacity: 1;
 }
 
 /* ==== CARRUSEL ==== */
 .carousel-btn {
   position: absolute;
   top: 50%;
-  background: rgba(128,0,0,0.8); /* guinda semitransparente */
-  border: none;
-  padding: 12px;
-  font-size: 1.8rem;
-  cursor: pointer;
   transform: translateY(-50%);
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.85);
+  color: #444;
+  border: none;
+  cursor: pointer;
   border-radius: 50%;
-  color: #fff;
-  transition: background 0.3s ease;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.1);
+  transition: background 0.2s ease, color 0.2s ease;
+  z-index: 10;
 }
 
 .carousel-btn:hover {
-  background: #a00000;
+  background: #7a1020;
+  color: #fff;
 }
 
-#prevBtn { left: -55px; }
-#nextBtn { right: -55px; }
+.carousel-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+#prevBtn { left: 1rem; }
+#nextBtn { right: 1rem; }
 
 /* ==== SCROLL PERSONALIZADO ==== */
 .galeria::-webkit-scrollbar {
@@ -206,11 +302,23 @@
   .album img {
     height: 120px;
   }
-  #prevBtn, #nextBtn {
-    top: auto;
-    bottom: 15px;
-    transform: none;
-    position: relative;
-    margin: 5px;
+  .carousel-btn {
+    width: 34px;
+    height: 34px;
   }
+  .carousel-btn svg {
+    width: 16px;
+    height: 16px;
+  }
+  #prevBtn { left: 0.4rem; }
+  #nextBtn { right: 0.4rem; }
+  .modal__close,
+  .modal__zoom {
+    width: 34px;
+    height: 34px;
+    top: 0.5rem;
+  }
+  .modal__close { right: 0.5rem; font-size: 1.2rem; }
+  .modal__zoom { right: 3.2rem; }
+  .modal__zoom svg { width: 16px; height: 16px; }
 }

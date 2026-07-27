@@ -269,11 +269,21 @@ galeriaData.forEach(album => {
     albumDiv.classList.add("album");
 
     evento.imagenes.forEach((img, index) => {
+      const item = document.createElement("div");
+      item.classList.add("album-item");
+
       const image = document.createElement("img");
       image.src = img.src;
       image.alt = img.desc;
       image.addEventListener("click", () => openModal(evento.imagenes, index));
-      albumDiv.appendChild(image);
+      item.appendChild(image);
+
+      const zoom = document.createElement("div");
+      zoom.classList.add("album-item__zoom");
+      zoom.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+      item.appendChild(zoom);
+
+      albumDiv.appendChild(item);
     });
 
     galeriaContainer.appendChild(albumDiv);
@@ -284,7 +294,17 @@ galeriaData.forEach(album => {
 const modal = document.getElementById("galeriaModal");
 const modalImg = document.getElementById("galeriaModalImg");
 const modalDesc = document.getElementById("galeriaModalDesc");
+const modalContent = document.querySelector(".modal__content");
 const closeModal = document.querySelector(".modal__close");
+const zoomBtn = document.getElementById("zoomBtn");
+const zoomLevel = document.getElementById("zoomLevel");
+let isZoomed = false;
+let isPanning = false;
+let panMoved = false;
+let panStartX, panStartY;
+let startX, startY, panX = 0, panY = 0;
+const ZOOM_LEVELS = [1.5, 2, 3];
+let zoomIndex = -1;
 
 let currentImages = [];
 let currentIndex = 0;
@@ -299,8 +319,93 @@ function openModal(images, index) {
 function showImage() {
   modalImg.src = currentImages[currentIndex].src;
   modalDesc.textContent = currentImages[currentIndex].desc;
+  resetZoom();
 }
 
+function getZoomScale() {
+  return zoomIndex >= 0 ? ZOOM_LEVELS[zoomIndex] : 1;
+}
+
+function updateZoomTransform() {
+  if (!isZoomed) { modalImg.style.transform = ''; return; }
+  clampPan();
+  modalImg.style.transform = 'scale(' + getZoomScale() + ') translate(' + panX + 'px, ' + panY + 'px)';
+}
+
+function getPanBounds() {
+  var w = modalImg.offsetWidth;
+  var h = modalImg.offsetHeight;
+  if (!w || !h) return { maxX: 0, maxY: 0 };
+  var s = getZoomScale();
+  return {
+    maxX: Math.round(w * (s - 1) / 2),
+    maxY: Math.round(h * (s - 1) / 2)
+  };
+}
+
+function clampPan() {
+  var bounds = getPanBounds();
+  panX = Math.max(-bounds.maxX, Math.min(bounds.maxX, panX));
+  panY = Math.max(-bounds.maxY, Math.min(bounds.maxY, panY));
+}
+
+function toggleZoom() {
+  zoomIndex = (zoomIndex + 1) % (ZOOM_LEVELS.length + 1);
+  isZoomed = zoomIndex >= 0 && zoomIndex < ZOOM_LEVELS.length;
+  if (!isZoomed) { resetZoom(); return; }
+  panX = 0;
+  panY = 0;
+  panMoved = false;
+  modalContent.classList.add("is-zoomed");
+  zoomBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="8" y1="11" x2="14" y2="11"/></svg>';
+  updateZoomLevel();
+  updateZoomTransform();
+}
+
+function updateZoomLevel() {
+  zoomLevel.textContent = Math.round(getZoomScale() * 100) + '%';
+  zoomLevel.classList.add('is-visible');
+}
+
+function resetZoom() {
+  zoomIndex = -1;
+  isZoomed = false;
+  panX = 0;
+  panY = 0;
+  panMoved = false;
+  modalContent.classList.remove("is-zoomed", "is-panning");
+  modalImg.style.transform = '';
+  zoomBtn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>';
+  zoomLevel.classList.remove('is-visible');
+}
+
+// Pan (arrastrar) en zoom
+modalImg.addEventListener("mousedown", function (e) {
+  if (!isZoomed) return;
+  isPanning = true;
+  panMoved = false;
+  panStartX = e.clientX;
+  panStartY = e.clientY;
+  startX = e.clientX - panX;
+  startY = e.clientY - panY;
+  modalContent.classList.add("is-panning");
+});
+
+window.addEventListener("mousemove", function (e) {
+  if (!isPanning) return;
+  if (Math.abs(e.clientX - panStartX) > 5 || Math.abs(e.clientY - panStartY) > 5) panMoved = true;
+  panX = e.clientX - startX;
+  panY = e.clientY - startY;
+  updateZoomTransform();
+});
+
+window.addEventListener("mouseup", function () {
+  if (!isPanning) return;
+  isPanning = false;
+  modalContent.classList.remove("is-panning");
+});
+
+// Prev / Next
 document.getElementById("prevBtn").addEventListener("click", () => {
   currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
   showImage();
@@ -311,5 +416,11 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   showImage();
 });
 
-closeModal.addEventListener("click", () => modal.style.display = "none");
-window.addEventListener("click", e => { if (e.target === modal) modal.style.display = "none"; });
+closeModal.addEventListener("click", () => { resetZoom(); modal.style.display = "none"; });
+window.addEventListener("click", e => { if (e.target === modal) { resetZoom(); modal.style.display = "none"; } });
+
+zoomBtn.addEventListener("click", toggleZoom);
+modalImg.addEventListener("click", function (e) {
+  if (isZoomed && panMoved) return;
+  toggleZoom();
+});

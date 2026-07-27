@@ -2,17 +2,24 @@
   var counters = document.querySelectorAll('.numero[data-target]');
   if (!counters.length) return;
 
-  var speed = 30;
-
   function animateCounter(el) {
     var target = parseInt(el.getAttribute('data-target'), 10);
+    var suffix = el.getAttribute('data-suffix') || '';
     var current = 0;
-    var increment = Math.ceil(target / 50);
+    var inc = Math.max(1, Math.ceil(target / 50));
+    var overshoot = Math.ceil(target * 0.08);
 
     function update() {
-      current += increment;
+      current += inc;
       if (current >= target) {
-        el.textContent = target;
+        el.textContent = target + suffix;
+        el.classList.add('is-complete');
+        var over = target + overshoot;
+        el.textContent = over + suffix;
+        setTimeout(function() {
+          el.textContent = target + suffix;
+          el.classList.add('is-settled');
+        }, 120);
         return;
       }
       el.textContent = current;
