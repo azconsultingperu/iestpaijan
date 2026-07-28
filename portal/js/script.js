@@ -428,26 +428,14 @@ function initCounters() {
   var yearsEl = document.getElementById('years-experience');
   if (yearsEl) {
     var years = new Date().getFullYear() - 1987;
-    yearsEl.setAttribute('data-target', years);
+    yearsEl.textContent = years;
   }
   var counters = document.querySelectorAll('[data-target]:not([data-counter="manual"])');
-  if (!counters.length) return;
-  function animate(el, delay) {
-    var target = parseInt(el.getAttribute('data-target'), 10);
+  counters.forEach(function(el) {
+    var target = el.getAttribute('data-target');
     var suffix = el.getAttribute('data-suffix') || '';
-    var current = 0;
-    var inc = Math.max(1, Math.ceil(target / 40));
-    setTimeout(function() {
-      function tick() {
-        current += inc;
-      if (current >= target) { el.textContent = target + suffix; return; }
-      el.textContent = current + suffix;
-        requestAnimationFrame(tick);
-      }
-      tick();
-    }, delay);
-  }
-  counters.forEach(function(c, i) { animate(c, i * 200); });
+    el.textContent = target + suffix;
+  });
 }
 
 function runInit() {
