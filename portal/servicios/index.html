@@ -29,10 +29,52 @@
   <p>El IESTP Paiján ofrece una variedad de servicios pensados en tu bienestar y formación integral. Conoce cada uno y accede a más información.</p>
 </section>
 
+<div class="index-nav">
+  <a href="#campus" class="index-nav__pill"><i class="fas fa-graduation-cap"></i> Campus Virtual</a>
+  <a href="#biblioteca" class="index-nav__pill"><i class="fas fa-book"></i> Biblioteca Virtual</a>
+  <a href="#bienestar" class="index-nav__pill"><i class="fas fa-hand-holding-heart"></i> Bienestar</a>
+  <a href="#empleabilidad" class="index-nav__pill"><i class="fas fa-briefcase"></i> Empleabilidad</a>
+  <a href="#psicologico" class="index-nav__pill"><i class="fas fa-brain"></i> Atención Psicológica</a>
+  <a href="#bolsa" class="index-nav__pill"><i class="fas fa-search-dollar"></i> Bolsa de Trabajo</a>
+  <a href="#topico" class="index-nav__pill"><i class="fas fa-medkit"></i> Servicio de Tópico</a>
+</div>
+
 <main class="servicios-main container reveal-on-scroll">
     <div class="servicios-grid">
+      <!-- CAMPUS VIRTUAL -->
+      <div class="servicio-card" id="campus">
+        <div class="servicio-card__icon"><i class="fas fa-globe"></i></div>
+        <h3>Portal Institucional / Campus Virtual</h3>
+        <p>Plataforma virtual de aprendizaje donde encontrarás tus cursos, materiales académicos, actividades y comunicación con docentes.</p>
+        <ul>
+          <li>Aulas virtuales</li>
+          <li>Material de estudio</li>
+          <li>Comunicación académica</li>
+        </ul>
+        <div class="servicio-card__footer">
+          <strong>Plataforma:</strong> Moodle
+        </div>
+        <a href="https://campusvirtual.iestpaijan.edu.pe/login/index.php" target="_blank" rel="noopener noreferrer" class="servicio-card__btn">Ingresar al Campus</a>
+      </div>
+
+      <!-- BIBLIOTECA VIRTUAL -->
+      <div class="servicio-card" id="biblioteca">
+        <div class="servicio-card__icon"><i class="fas fa-book"></i></div>
+        <h3>Biblioteca Virtual</h3>
+        <p>Accede a nuestro catálogo digital de libros, revistas y recursos académicos disponibles en línea para toda la comunidad educativa.</p>
+        <ul>
+          <li>Libros digitales</li>
+          <li>Revistas académicas</li>
+          <li>Recursos de investigación</li>
+        </ul>
+        <div class="servicio-card__footer">
+          <strong>Acceso:</strong> 24 horas / 7 días
+        </div>
+        <a href="https://www.alphaeditorialcloud.com/library" target="_blank" rel="noopener noreferrer" class="servicio-card__btn">Ir a Biblioteca Virtual</a>
+      </div>
+
       <!-- BIENESTAR ESTUDIANTIL -->
-      <div class="servicio-card">
+      <div class="servicio-card" id="bienestar">
         <div class="servicio-card__icon"><i class="fas fa-smile"></i></div>
         <h3>Bienestar Estudiantil</h3>
         <p>Promueve el desarrollo integral de los estudiantes a través de programas de acompañamiento, orientación y actividades que favorecen su permanencia.</p>
@@ -44,11 +86,11 @@
         <div class="servicio-card__footer">
           <strong>Horario:</strong> Lun-Vie 8:00 am - 4:00 pm
         </div>
-        <a href="bienestar_empleabilidad/" class="servicio-card__btn">Ver más</a>
+        <a href="bienestar_empleabilidad/" class="servicio-card__btn"><i class="fas fa-arrow-right"></i> Ver más</a>
       </div>
 
       <!-- EMPLEABILIDAD -->
-      <div class="servicio-card">
+      <div class="servicio-card" id="empleabilidad">
         <div class="servicio-card__icon"><i class="fas fa-briefcase"></i></div>
         <h3>Empleabilidad</h3>
         <p>Prepara a los estudiantes para su inserción laboral, desarrollando competencias y conectándolos con oportunidades.</p>
@@ -60,11 +102,11 @@
         <div class="servicio-card__footer">
           <strong>Contacto:</strong> empleabilidad@iestpaijan.edu.pe
         </div>
-        <a href="bienestar_empleabilidad/" class="servicio-card__btn">Ver más</a>
+        <a href="bienestar_empleabilidad/" class="servicio-card__btn"><i class="fas fa-arrow-right"></i> Ver más</a>
       </div>
 
       <!-- CONSULTORIO PSICOLÓGICO -->
-      <div class="servicio-card">
+      <div class="servicio-card" id="psicologico">
         <div class="servicio-card__icon"><i class="fas fa-brain"></i></div>
         <h3>Atención Psicológica</h3>
         <p>Atención profesional y confidencial a estudiantes y docentes, promoviendo la salud mental y el bienestar emocional.</p>
@@ -76,11 +118,11 @@
         <div class="servicio-card__footer">
           <strong>Contacto:</strong> psicologia@iestppaijan.edu.pe
         </div>
-        <a href="consultorio_psicologico/" class="servicio-card__btn">Ver más</a>
+        <a href="consultorio_psicologico/" class="servicio-card__btn"><i class="fas fa-arrow-right"></i> Ver más</a>
       </div>
 
       <!-- BOLSA DE TRABAJO -->
-      <div class="servicio-card">
+      <div class="servicio-card" id="bolsa">
         <div class="servicio-card__icon"><i class="fas fa-search"></i></div>
         <h3>Bolsa de Trabajo</h3>
         <p>Servicio gratuito que conecta a estudiantes y egresados con empresas que ofrecen prácticas y empleo.</p>
@@ -92,11 +134,11 @@
         <div class="servicio-card__footer">
           <strong>Consultas:</strong> bolsatrabajo@iestppaijan.edu.pe
         </div>
-        <a href="bolsa_trabajo/" class="servicio-card__btn">Ver más</a>
+        <a href="bolsa_trabajo/" class="servicio-card__btn"><i class="fas fa-arrow-right"></i> Ver más</a>
       </div>
 
       <!-- SERVICIO DE TÓPICO -->
-      <div class="servicio-card">
+      <div class="servicio-card" id="topico">
         <div class="servicio-card__icon"><i class="fas fa-medkit"></i></div>
         <h3>Servicio de Tópico</h3>
         <p>Atención de primeros auxilios y cuidados básicos de salud, contribuyendo a un entorno seguro.</p>
@@ -108,7 +150,7 @@
         <div class="servicio-card__footer">
           <strong>Ubicación:</strong> 1er Piso - Módulo Servicios
         </div>
-        <a href="servicio_topico/" class="servicio-card__btn">Ver más</a>
+        <a href="servicio_topico/" class="servicio-card__btn"><i class="fas fa-arrow-right"></i> Ver más</a>
       </div>
     </div>
   </main>

@@ -57,53 +57,10 @@
 
       '<li class="nav__item"><a href="' + p + 'admision/" class="nav__link" data-page="admision">' + 'Admisión</a></li>',
 
-      '<!-- Programas -->',
-      '<li class="nav__item has-submenu">',
-      '<a href="#programas" class="nav__link">' + 'Programas</a>',
-      '<div class="submenu"><ul>',
-      '<li><a href="' + p + 'acc/" data-page="acc">' + 'Administración de Centros de Cómputo</a></li>',
-      '<li><a href="' + p + 'pagro/" data-page="pagro">' + 'Producción Agropecuaria</a></li>',
-      '<li><a href="' + p + 'enfermeria_tecnica/" data-page="enfermeria">' + 'Enfermería Técnica</a></li>',
-      '</ul></div>',
-      '</li>',
-
-      '<!-- Transparencia -->',
-      '<li class="nav__item has-submenu">',
-      '<a href="' + p + 'transparencia/" class="nav__link" data-page="transparencia">' + 'Transparencia</a>',
-      '<div class="submenu"><ul>',
-      '<li><a href="' + p + 'transparencia/" data-page="transparencia">' + 'Transparencia</a></li>',
-      '<li><a href="' + p + 'transparencia/#documentos" data-page="transparencia">' + 'Documentos de Gestión</a></li>',
-      '<li><a href="' + p + 'transparencia/#estadisticas" data-page="transparencia">' + 'Estadísticas</a></li>',
-      '<li><a href="' + p + 'transparencia/#donaciones" data-page="transparencia">' + 'Donaciones e Inversiones</a></li>',
-      '<li><a href="' + p + 'transparencia/#licenciamiento" data-page="transparencia">' + 'Licenciamiento</a></li>',
-      '<li><a href="' + p + 'transparencia/#tupa" data-page="transparencia">' + 'TUPA</a></li>',
-      '</ul></div>',
-      '</li>',
-
-      '<!-- Servicios -->',
-      '<li class="nav__item has-submenu">',
-      '<a href="' + p + 'servicios/" class="nav__link" data-page="servicios">' + 'Servicios</a>',
-      '<div class="submenu"><ul>',
-      '<li><a href="https://www.alphaeditorialcloud.com/library" target="_blank">' + 'Biblioteca Virtual</a></li>',
-      '<li><a href="https://campusvirtual.iestpaijan.edu.pe/login/index.php" target="_blank">' + 'Campus virtual</a></li>',
-      '<li><a href="' + p + 'servicios/" data-page="servicios">' + 'Servicios Institucionales</a></li>',
-      '<li><a href="' + p + 'servicios/#bienestar" data-page="servicios">' + 'Bienestar y Empleabilidad</a></li>',
-      '<li><a href="' + p + 'servicios/#psicologico" data-page="servicios">' + 'Consultorio Psicológico</a></li>',
-      '<li><a href="' + p + 'servicios/#bolsa" data-page="servicios">' + 'Bolsa de Trabajo</a></li>',
-      '<li><a href="' + p + 'servicios/#topico" data-page="servicios">' + 'Servicio Tópico</a></li>',
-      '</ul></div>',
-      '</li>',
-
-      '<!-- Otros -->',
-      '<li class="nav__item has-submenu">',
-      '<a href="#" class="nav__link">' + 'Otros</a>',
-      '<div class="submenu"><ul>',
-      '<li><a href="' + p + 'enlaces_institucionales/" data-page="enlaces">' + 'Enlaces Institucionales</a></li>',
-      '<li><a href="' + p + 'manual_campus/" data-page="manual">' + 'Manual de campus virtual</a></li>',
-      '<li><a href="' + p + 'galeria/" data-page="galeria">' + 'Galería</a></li>',
-      '<li><a href="' + home.replace(/#$/, '') + 'index.html#contacto">' + 'Contacto</a></li>',
-      '</ul></div>',
-      '</li>',
+      '<li class="nav__item"><a href="' + p + 'programas/" class="nav__link" data-page="programas">' + 'Programas</a></li>',
+      '<li class="nav__item"><a href="' + p + 'transparencia/" class="nav__link" data-page="transparencia">' + 'Transparencia</a></li>',
+      '<li class="nav__item"><a href="' + p + 'servicios/" class="nav__link" data-page="servicios">' + 'Servicios</a></li>',
+      '<li class="nav__item"><a href="' + p + 'galeria/" class="nav__link" data-page="galeria">' + 'Galería</a></li>',
       '</ul>',
       '<div class="nav__footer">',
       '<div class="nav__footer-label">Síguenos</div>',
@@ -206,25 +163,32 @@
 
     /* ── Highlight active page ── */
     if (page) {
-      var sel = 'a[data-page="' + page + '"]';
+      var parentMap = {
+        'acc': 'programas', 'pagro': 'programas', 'enfermeria': 'programas',
+        'bienestar_empleabilidad': 'servicios', 'consultorio_psicologico': 'servicios',
+        'bolsa_trabajo': 'servicios', 'servicio_topico': 'servicios',
+        'documentos_gestion': 'transparencia', 'estadisticas': 'transparencia',
+        'donaciones_inversiones': 'transparencia', 'licenciamiento': 'transparencia', 'tupa': 'transparencia',
+        'presentacion': 'nosotros', 'mision_vision': 'nosotros', 'resena_historica': 'nosotros',
+        'organigrama': 'nosotros', 'plana_jerarquica': 'nosotros', 'planadocente': 'nosotros',
+        'nosotros': 'nosotros'
+      };
+      var finalPage = parentMap[page] || page;
+      var sel = 'a[data-page="' + finalPage + '"]';
       var links = document.querySelectorAll(sel);
       var curPath = window.location.pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
       var curHash = window.location.hash;
+      var matched = false;
       for (var i = 0; i < links.length; i++) {
         var linkPath = links[i].pathname.replace(/\/index\.html$/, '').replace(/\/$/, '');
-        if (linkPath !== curPath) continue;
-        var linkHash = links[i].hash;
-        if (linkHash && curHash && linkHash === curHash) {
+        if (linkPath === curPath) {
           links[i].classList.add('is-active');
+          matched = true;
         }
-        if (!linkHash) {
+      }
+      if (!matched && parentMap[page]) {
+        for (var i = 0; i < links.length; i++) {
           links[i].classList.add('is-active');
-        }
-        var parentSub = links[i].closest('.has-submenu');
-        if (parentSub) {
-          parentSub.classList.add('is-open');
-          var parentLink = parentSub.querySelector(':scope > a');
-          if (parentLink) parentLink.classList.add('is-active');
         }
       }
     }

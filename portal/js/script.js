@@ -79,25 +79,7 @@ function initHeaderNav() {
 
   var navLinks = document.querySelectorAll('#main-nav > .nav__list > .nav__item > a');
   for (var i = 0; i < navLinks.length; i++) {
-    navLinks[i].addEventListener('click', function (e) {
-      if (window.innerWidth <= 900) {
-        var parentLi = this.closest('.has-submenu');
-        if (parentLi && parentLi.querySelector('.submenu')) {
-          e.preventDefault();
-          var alreadyOpen = parentLi.classList.contains('is-open');
-          var allSubs = parentLi.closest('.nav__list').querySelectorAll('.has-submenu.is-open');
-          for (var s = 0; s < allSubs.length; s++) allSubs[s].classList.remove('is-open');
-          if (!alreadyOpen) parentLi.classList.add('is-open');
-        } else {
-          closeNav();
-        }
-      }
-    });
-  }
-
-  var subLinks = document.querySelectorAll('#main-nav .submenu a');
-  for (var i = 0; i < subLinks.length; i++) {
-    subLinks[i].addEventListener('click', function () {
+    navLinks[i].addEventListener('click', function () {
       if (window.innerWidth <= 900) closeNav();
     });
   }
