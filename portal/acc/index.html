@@ -28,6 +28,17 @@
 
   <link rel="stylesheet" href="../fontawesome/css/all.min.css">
 
+
+  <style>
+    /* Overlay rojo más suave para mostrar la imagen */
+    .section-banner--hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(198, 40, 40, 0.5), rgba(50, 8, 12, 0.6));
+    }
+  </style>
+
 </head>
 
 
@@ -36,7 +47,7 @@
 
 <div data-include="shell" data-root="../" data-home="../../" data-page="acc"></div>
 
-<section class="section-banner section-banner--hero reveal-on-scroll">
+<section class="section-banner section-banner--hero reveal-on-scroll" style="background-image: url('../imagenes/carreras/acc_bg.jpg'); background-size: cover; background-position: center;">
   <div class="section-banner__content">
     <span class="section-banner__badge">Programa Académico</span>
     <h1 class="section-banner__title">

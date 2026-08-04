@@ -16,6 +16,21 @@
   <style>
     .programas-page .acc__presentacion { padding-top: 2rem; }
     hr.programa-separator { border: none; height: 1px; background: linear-gradient(to right, transparent, #c9a84c, transparent); margin: 3rem 0; opacity: 0.3; }
+    .section-banner--hero {
+      background-image: image-set(
+        url("../imagenes/carreras/programas_bg.avif") type("image/avif"),
+        url("../imagenes/carreras/programas_bg.webp") type("image/webp"),
+        url("../imagenes/carreras/programas_bg.jpg") type("image/jpeg")
+      );
+      background-size: cover;
+      background-position: center;
+    }
+    .section-banner--hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(198, 40, 40, 0.4), rgba(50, 8, 12, 0.55));
+    }
   </style>
 </head>
 <body>
