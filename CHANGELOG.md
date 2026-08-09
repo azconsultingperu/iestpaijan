@@ -1,70 +1,41 @@
 # Changelog
 
-Todos los cambios notables del portal IESTP Paiján se documentan en este archivo.
-Formato basado en [Keep a Changelog](https://keepachangelog.com/es/1.1.0/). Las fechas corresponden a los commits reales del repositorio.
+Todos los cambios notables del portal del IESTP Paiján se documentan en este
+archivo. Formato basado en [Keep a Changelog](https://keepachangelog.com/es/1.1.0/).
 
-## [Unreleased] — 2026-08-09
+## [Unreleased]
 
-### Added
+### Agregado
 
-- `README.md`: ficha institucional (eslogan, matrícula, R.M. de creación, dominio) como bloque "Ficha".
-- `README.md`: documentación del repositorio (stack, estructura, cómo correr, cómo publicar contenido y tokens de diseño), creado desde verificación directa del código.
-- `CHANGELOG.md`: historial de cambios (este archivo).
-- Accesibilidad: `:focus-visible` global y soporte `prefers-reduced-motion` (desactiva Ken Burns, reveal-on-scroll y overshoots de transición).
-- Tokens de borde y sombra en `:root` de `styles.css` (`--radius-xs..pill`, `--shadow-sm/md/lg`); radios de las hojas de estilos del portal migrados a las variables.
-- Estado vacío en el feed de noticias de la portada y placeholder SVG cuando una imagen no carga.
-- Mensajes de error visibles bajo los campos del formulario de contacto (nombre, correo, teléfono, programa).
+- `README.md`: ficha institucional del portal (creación en 1987, R.M. N° 498-87-ED, matrícula gratuita, programas, contacto y secciones), verificada directamente en el sitio.
+- `CHANGELOG.md`: registro de cambios notables del portal.
 
-### Changed
+## [2026-08-09]
 
-- Stats del hero con datos verificables: «Matrícula gratuita 100%» y «R.M. de creación 498» reemplazan a «500+ egresados» y «25+ docentes» (cifras sin fuente).
-- Formulario de contacto: validación ordenada con `novalidate` y limpieza de errores al escribir; toast de confirmación ya no es bloqueante (flotante, `role="status"`, auto-cierre 4,5 s).
-- Tarjetas de noticias de la portada ahora son `<button>` navegables por teclado; los modales (portada, galería, becas) usan `role="dialog"` + `aria-modal`, focus trap con Tab, cierre con `Escape` y restauración de foco.
-- Galería: textos alternativos descriptivos por foto y acceso por teclado (Enter/Espacio).
-- Headers de sección de la portada unificados en `.section__header--center` (se eliminaron estilos en línea).
-- Corregido el estado `:focus` del formulario, que referenciaba variables inexistentes (`--guinda`/`--ring`); ahora usa `--primary` con anillo `rgba(--primary-rgb)`.
+### Agregado
+
+- Sección «Ficha» institucional en el README con datos verificables (eslogan, R.M. de creación y matrícula gratuita).
+- Estado vacío y mensajes de error visibles en el formulario de contacto de la portada.
+- Accesibilidad: foco visible al navegar con teclado y soporte para quienes prefieren menos movimiento (desactiva animaciones Ken Burns y revelaciones al hacer scroll).
+
+### Corregido
+
+- Datos del hero de la portada reemplazados por cifras verificables: «Matrícula gratuita 100 %», «R.M. de creación 498» y años de experiencia calculados desde 1987, en lugar de cifras sin fuente.
+- Formulario de contacto con validación en orden y mensajes de error claros.
+
+### Cambiado
+
+- Navegación unificada en todas las páginas: pestañas con iconos, compensación de scroll y botones «Volver» en las subpáginas.
+- Galería: textos alternativos descriptivos en cada foto y acceso completo por teclado.
 
 ## [2026-08-04]
 
-### Changed
+### Cambiado
 
-- Actualización del set de imágenes del portal (AVIF/WebP optimizados).
+- Rediseño del portal: encabezado con menú adaptable (hamburguesa) y estilos responsivos para móviles.
 
-## [2026-07-28]
+### Corregido
 
-### Changed
+- Búsqueda optimizada (SEO), títulos de página, imágenes y proporciones de elementos en las secciones.
 
-- Navegación unificada: pills con iconos, offset de scroll para el header fijo, botones "Volver" y resaltado de la página activa en subpáginas (`include.js`).
-- Mejoras en sección Inicio y Hero de la portada.
-
-## [2026-07-27]
-
-### Fixed
-
-- SEO, imágenes, secciones y títulos de páginas.
-
-## [2026-07-26]
-
-### Fixed
-
-- SEO, navegación hamburguesa, imágenes y proporciones (aspect).
-
-## [2026-07-25]
-
-### Changed
-
-- Menú hamburguesa rediseñado.
-- Diseño responsive refinado.
-- **Rediseño general del portal** ("rediseñando portal iestpaiján").
-
-## [2026-07-23]
-
-### Fixed
-
-- Eslogan actualizado a ¡Crea, Innova e Inspira!.
-- Correcciones del indicador de scroll ("Desplázate"): sin borde/fondo, simplificado y posicionado en el borde inferior del hero.
-- Eliminada animación CSS que ocultaba tarjetas (visibilidad por defecto).
-
-## Historial anterior
-
-- Correcciones previas del sitio (diseño inicial, migración del antiguo portal institucional). No registradas como entradas por separado en `git log`.
+_Registro descriptivo: solo cambios visibles o de contenido del sitio._
