@@ -31,7 +31,7 @@
   background: var(--gold);
   color: #1a1a2e;
   padding: 0.4rem 1.2rem;
-  border-radius: 50px;
+  border-radius: var(--radius-pill);
   font-size: 0.75rem;
   font-weight: 700;
   letter-spacing: 2px;
@@ -61,7 +61,7 @@
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
   color: #1a1a2e;
   padding: 0.85rem 2rem;
-  border-radius: 14px;
+  border-radius: var(--radius-md);
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
@@ -83,7 +83,7 @@
   background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   background-attachment: scroll; /* era fixed: eliminado */
   padding: 4rem 1rem;
-  /* border-radius: 20px; */
+  /* border-radius: var(--radius-lg); */
   /* margin: 3rem auto; */
   text-align: center;
   overflow: hidden;
@@ -96,7 +96,7 @@
   background:
     radial-gradient(ellipse 60% 50% at 50% 40%, rgba(var(--gold-rgb),0.08) 0%, transparent 60%),
     linear-gradient(135deg, rgba(var(--primary-rgb), 0.92), rgba(50, 8, 12, 0.85));
-  /* border-radius: 20px; */
+  /* border-radius: var(--radius-lg); */
 }
 .section-banner h1 {
   position: relative;
@@ -125,7 +125,7 @@
 }
 .adm-card {
   background: var(--bg-card);
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   padding: 2rem;
   box-shadow: 0 4px 24px rgba(0,0,0,0.04), 0 1px 4px rgba(0,0,0,0.02);
   border: 1px solid var(--border);
@@ -212,7 +212,7 @@
 }
 .adm-pdf embed {
   border: 2px solid var(--border);
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   box-shadow: 0 12px 40px rgba(0,0,0,0.06);
   max-width: 100%;
 }
@@ -242,7 +242,7 @@
   color: var(--text);
   border: 1px solid var(--border);
   padding: 0;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   cursor: pointer;
   font-family: 'Montserrat', sans-serif;
   text-align: left;
@@ -260,7 +260,7 @@
   display: block;
   height: 3px;
   background: linear-gradient(90deg, var(--primary), var(--gold));
-  border-radius: 20px 20px 0 0;
+  border-radius: var(--radius-lg) 20px 0 0;
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
@@ -280,7 +280,7 @@
 .becas__btn-icon {
   width: 44px;
   height: 44px;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   background: linear-gradient(135deg, rgba(var(--primary-rgb),0.08), rgba(var(--gold-rgb),0.06));
   display: flex;
   align-items: center;
@@ -366,7 +366,7 @@
   background: var(--bg-card);
   width: 92%;
   max-width: 900px;
-  border-radius: 20px;
+  border-radius: var(--radius-lg);
   overflow: hidden;
   box-shadow: 0 24px 80px rgba(0,0,0,0.3);
 }

@@ -3,7 +3,7 @@
   position: relative;
   background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
   padding: 3rem 1rem;
-  /* border-radius: 12px; */
+  /* border-radius: var(--radius-md); */
   /* margin: 2rem auto; */
   text-align: center;
   overflow: hidden;
@@ -15,7 +15,7 @@
   position: absolute;
   inset: 0;
   background: linear-gradient(135deg, rgba(122, 16, 32, 0.88), rgba(50, 8, 12, 0.8));
-  /* border-radius: 12px; */
+  /* border-radius: var(--radius-md); */
 }
 
 .section-banner h1 {
@@ -41,7 +41,7 @@
   max-width: 900px;
   margin: 0 auto;
   border: 2px solid #800000; /* guinda */
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   overflow: hidden;
 }
 

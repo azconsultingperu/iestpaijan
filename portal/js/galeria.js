@@ -271,12 +271,26 @@ galeriaData.forEach(album => {
     evento.imagenes.forEach((img, index) => {
       const item = document.createElement("div");
       item.classList.add("album-item");
+      item.setAttribute("role", "button");
+      item.setAttribute("tabindex", "0");
+      item.setAttribute("aria-label", "Abrir foto: " + (img.desc || (evento.nombre + ", foto " + (index + 1) + " de " + evento.imagenes.length)));
 
       const image = document.createElement("img");
       image.src = img.src;
-      image.alt = img.desc;
+      image.alt = img.desc || (evento.nombre + ". Foto " + (index + 1) + " de " + evento.imagenes.length);
+      image.loading = "lazy";
+      image.addEventListener("error", function () {
+        this.style.background = "#e8e4e0";
+      });
       image.addEventListener("click", () => openModal(evento.imagenes, index));
       item.appendChild(image);
+
+      item.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          openModal(evento.imagenes, index);
+        }
+      });
 
       const zoom = document.createElement("div");
       zoom.classList.add("album-item__zoom");
@@ -308,19 +322,54 @@ let zoomIndex = -1;
 
 let currentImages = [];
 let currentIndex = 0;
+let lastFocused = null;
 
 function openModal(images, index) {
+  lastFocused = document.activeElement;
   currentImages = images;
   currentIndex = index;
   showImage();
   modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  const closeBtn = modal.querySelector(".modal__close");
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeGalleryModal() {
+  resetZoom();
+  modal.style.display = "none";
+  document.body.style.overflow = "";
+  if (lastFocused && lastFocused.focus) lastFocused.focus();
 }
 
 function showImage() {
   modalImg.src = currentImages[currentIndex].src;
-  modalDesc.textContent = currentImages[currentIndex].desc;
+  var desc = currentImages[currentIndex].desc;
+  modalImg.alt = desc || "Foto del evento";
+  modalDesc.textContent = desc;
   resetZoom();
+  modal.setAttribute("aria-label", (desc || "Foto") + ". Foto " + (currentIndex + 1) + " de " + currentImages.length);
 }
+
+function trapFocusInGallery(e) {
+  var focusables = Array.prototype.slice.call(modal.querySelectorAll("button:not([disabled]), [href], [tabindex]:not([tabindex='-1'])"));
+  if (!focusables.length) return;
+  var first = focusables[0];
+  var last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
+document.addEventListener("keydown", function (e) {
+  if (!modal || modal.style.display !== "flex") return;
+  if (e.key === "Escape") closeGalleryModal();
+  if (e.key === "Tab") trapFocusInGallery(e);
+});
 
 function getZoomScale() {
   return zoomIndex >= 0 ? ZOOM_LEVELS[zoomIndex] : 1;
@@ -416,8 +465,8 @@ document.getElementById("nextBtn").addEventListener("click", () => {
   showImage();
 });
 
-closeModal.addEventListener("click", () => { resetZoom(); modal.style.display = "none"; });
-window.addEventListener("click", e => { if (e.target === modal) { resetZoom(); modal.style.display = "none"; } });
+closeModal.addEventListener("click", closeGalleryModal);
+window.addEventListener("click", e => { if (e.target === modal) closeGalleryModal(); });
 
 zoomBtn.addEventListener("click", toggleZoom);
 modalImg.addEventListener("click", function (e) {

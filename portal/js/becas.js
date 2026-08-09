@@ -52,11 +52,23 @@ async function checkFileAndOpen(pdfFile) {
   }
 }
 
+let lastFocusedBeca = null;
+
 function openModal(pdfFile) {
+  lastFocusedBeca = document.activeElement;
   pdfViewer.src = pdfFile;
   pdfViewer.style.display = "block";
   mensaje.style.display = "none";
   modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  if (closeBtn) closeBtn.focus();
+}
+
+function closeModal() {
+  modal.style.display = "none";
+  pdfViewer.src = "";
+  document.body.style.overflow = "";
+  if (lastFocusedBeca && lastFocusedBeca.focus) lastFocusedBeca.focus();
 }
 
 function showNoFileMessage() {
@@ -64,16 +76,32 @@ function showNoFileMessage() {
   pdfViewer.style.display = "none";
   mensaje.style.display = "block";
   modal.style.display = "flex";
+  document.body.style.overflow = "hidden";
+  if (closeBtn) closeBtn.focus();
 }
 
-closeBtn.onclick = () => {
-  modal.style.display = "none";
-  pdfViewer.src = "";
-};
+function trapFocusBeca(e) {
+  var focusables = Array.prototype.slice.call(modal.querySelectorAll("button:not([disabled]), [href], iframe, [tabindex]:not([tabindex='-1'])"));
+  if (!focusables.length) return;
+  var first = focusables[0];
+  var last = focusables[focusables.length - 1];
+  if (e.shiftKey && document.activeElement === first) {
+    e.preventDefault();
+    last.focus();
+  } else if (!e.shiftKey && document.activeElement === last) {
+    e.preventDefault();
+    first.focus();
+  }
+}
+
+document.addEventListener("keydown", function (e) {
+  if (!modal || modal.style.display !== "flex") return;
+  if (e.key === "Escape") closeModal();
+  if (e.key === "Tab") trapFocusBeca(e);
+});
+
+closeBtn.onclick = closeModal;
 
 window.onclick = e => {
-  if (e.target === modal) {
-    modal.style.display = "none";
-    pdfViewer.src = "";
-  }
+  if (e.target === modal) closeModal();
 };

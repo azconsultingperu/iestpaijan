@@ -16,7 +16,7 @@
 /* Service Card */
 .servicio-card {
   background: #fff;
-  border-radius: 16px;
+  border-radius: var(--radius-lg);
   padding: 2.5rem 2rem;
   box-shadow: 0 10px 30px rgba(0,0,0,0.05);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -54,7 +54,7 @@
   height: 60px;
   background: rgba(var(--primary-rgb), 0.1);
   color: var(--primary);
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -126,7 +126,7 @@
   color: #fff;
   text-align: center;
   padding: 0.65rem 1rem;
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   text-decoration: none;
   font-weight: 600;
   font-size: 0.9rem;

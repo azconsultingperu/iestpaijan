@@ -167,7 +167,7 @@ function initNoticias() {
     const isPortalDir = window.location.pathname.includes('/portal/') || window.location.pathname.endsWith('/portal');
     const imgBase = isPortalDir ? 'imagenes/' : 'portal/imagenes/';
 
-    const noticias = [
+const noticias = [
       { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026. Los interesados deben acercarse a la oficina de administración para recibir mayores detalles e iniciar el proceso de titulación correspondiente.", imagen: [imgBase + "noticias/aviso-2026-1.jpeg", imgBase + "noticias/aviso-2026-1.jpeg"], categoria: "comunicado" },
       { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar por la irreparable pérdida de nuestro querido miembro de la comunidad educativa. Paz en su tumba.", imagen: [imgBase + "noticias/fallesimiento_07_05_2026.jpeg", imgBase + "noticias/fallesimiento_07_05_2026.jpeg"], categoria: "comunicado" },
       { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador a toda nuestra comunidad educativa. Reconocimiento especial a nuestros docentes y personal administrativo que día a día construyen el futuro de nuestros estudiantes.", imagen: [imgBase + "noticias/dia_del_trabajador.jpeg", imgBase + "noticias/dia_del_trabajador.jpeg"], categoria: "evento" },
@@ -175,6 +175,14 @@ function initNoticias() {
       { titulo: "Examen de Admisión 2026", fecha: "03/04/2026", contenido: "Prepárate para ingresar al IESTP Paiján. El examen de admisión 2026 está próximo a realizarse. Inscríbete y asegura tu vacante en nuestros programas académicos de alta demanda.", imagen: [imgBase + "admision/primer_admision/1.jpeg"], categoria: "admision" },
       { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones para el Proceso de Admisión 2026-1. No pierdas la oportunidad de formar parte de nuestra institución y construir tu futuro profesional.", imagen: [imgBase + "noticias/inicio_clases20252.jpg"], categoria: "admision" },
     ];
+
+    const placeHolderImg = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(
+      '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340"><rect width="600" height="340" fill="#efece6"/><g fill="none" stroke="#c4bdb3" stroke-width="10" stroke-linecap="round"><circle cx="300" cy="150" r="40"/><path d="M210 260 q35 -55 90 -55 q40 0 90 55"/></g></svg>'
+    );
+
+    if (!noticias.length) {
+      feed.innerHTML = '<div class="news-feed__empty">Aún no publicamos comunicados. Síguenos en nuestras redes sociales para enterarte de las novedades del IESTP Paiján.</div>';
+    }
 
     const modal = document.getElementById("news-modal");
     const modalImg = document.getElementById("modal-img");
@@ -187,17 +195,40 @@ function initNoticias() {
     const nextBtn = document.getElementById("modal-next");
 
     let currentArticleIndex = -1;
+    let lastFocused = null;
+
+    function getFocusables(container) {
+      return Array.prototype.slice.call(container.querySelectorAll('button:not([disabled]), [href], input:not([disabled]), select, textarea, iframe, [tabindex]:not([tabindex="-1"])'))
+        .filter(function (el) { return el.offsetParent !== null || el === document.activeElement; });
+    }
+
+    function trapFocus(container, e) {
+      var focusables = getFocusables(container);
+      if (!focusables.length) return;
+      var first = focusables[0];
+      var last = focusables[focusables.length - 1];
+      if (e.shiftKey && (document.activeElement === first || document.activeElement === container)) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
 
     function openModal() {
       if (!modal) return;
+      lastFocused = document.activeElement;
       modal.classList.add('is-open');
       document.body.style.overflow = "hidden";
+      if (closeBtn) closeBtn.focus();
     }
 
     function closeModal() {
       if (!modal) return;
       modal.classList.remove('is-open');
       document.body.style.overflow = "";
+      if (lastFocused && lastFocused.focus) lastFocused.focus();
     }
 
     function renderCategory(cat) {
@@ -225,9 +256,11 @@ function initNoticias() {
     }
 
     noticias.forEach(function(noticia, index) {
-      const card = document.createElement("div");
+      const card = document.createElement("button");
+      card.type = "button";
       card.className = "news-card reveal-on-scroll";
       card.style.setProperty("--i", index);
+      card.setAttribute("aria-label", "Ver noticia: " + noticia.titulo);
       card.innerHTML =
         '<div class="news-card__image">' +
           renderCategory(noticia.categoria) +
@@ -238,6 +271,14 @@ function initNoticias() {
           '<h3 class="news-card__title">' + noticia.titulo + '</h3>' +
           '<p class="news-card__excerpt">' + noticia.contenido + '</p>' +
         '</div>';
+
+      var cardImg = card.querySelector('img');
+      if (cardImg) {
+        cardImg.addEventListener('error', function () {
+          this.onerror = null;
+          this.src = placeHolderImg;
+        });
+      }
 
       card.addEventListener("click", function() {
         if (!modal) return;
@@ -272,7 +313,9 @@ function initNoticias() {
     }
 
     document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape" && modal && modal.classList.contains('is-open')) closeModal();
+      if (!modal || !modal.classList.contains('is-open')) return;
+      if (e.key === "Escape") closeModal();
+      if (e.key === "Tab") trapFocus(modal, e);
     });
   } catch (err) {
     console.error("Error in initNoticias:", err);
@@ -320,20 +363,22 @@ function initContacto() {
     badge.className = 'hours-badge ' + (isOpen ? 'is-open' : 'is-closed');
   }
 
-  // ── Toast modal ──
+  // ── Toast (notificación no bloqueante) ──
   var toast = document.getElementById('toast-modal');
   var toastClose = document.getElementById('toast-close');
+  var toastTimer = null;
 
   function openToast() {
     if (!toast) return;
     toast.classList.add('is-open');
-    document.body.style.overflow = 'hidden';
+    if (toastTimer) clearTimeout(toastTimer);
+    toastTimer = setTimeout(closeToast, 4500);
   }
 
   function closeToast() {
     if (!toast) return;
+    if (toastTimer) clearTimeout(toastTimer);
     toast.classList.remove('is-open');
-    document.body.style.overflow = '';
   }
 
   if (toastClose) toastClose.addEventListener('click', closeToast);
@@ -350,6 +395,36 @@ function initContacto() {
   var form = document.getElementById('contact-form');
   var submitBtn = document.getElementById('contact-submit');
   var whatsappBtn = document.getElementById('contact-whatsapp-btn');
+
+  var camposRequeridos = ['nombre', 'correo', 'telefono', 'programa'];
+
+  function setCampoError(id, hasError) {
+    var input = document.getElementById(id);
+    if (!input) return;
+    var group = input.closest('.form__group');
+    if (group) group.classList.toggle('has-error', hasError);
+  }
+
+  function campoValido(id) {
+    var input = document.getElementById(id);
+    if (!input) return false;
+    return input.value.trim() !== '' && input.checkValidity();
+  }
+
+  function validarFormulario() {
+    var invalidos = [];
+    camposRequeridos.forEach(function (id) {
+      var ok = campoValido(id);
+      setCampoError(id, !ok);
+      if (!ok) invalidos.push(id);
+    });
+    return invalidos;
+  }
+
+  function limpiarError(e) {
+    var id = e.target && e.target.id;
+    if (id && camposRequeridos.indexOf(id) !== -1) setCampoError(id, false);
+  }
 
   function getFormData() {
     var nombre = (document.getElementById('nombre')?.value || '').trim();
@@ -374,10 +449,20 @@ function initContacto() {
   }
 
   if (form) {
+    form.setAttribute('novalidate', 'novalidate');
+    ['input', 'change'].forEach(function (evt) {
+      form.addEventListener(evt, limpiarError);
+    });
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      var invalidos = validarFormulario();
+      if (invalidos.length) {
+        var first = document.getElementById(invalidos[0]);
+        if (first) first.focus();
+        return;
+      }
       var data = getFormData();
-      if (!data.nombre || !data.correo || !data.telefono) return;
       if (submitBtn) submitBtn.classList.add('is-loading');
       setTimeout(function() {
         if (submitBtn) submitBtn.classList.remove('is-loading');
@@ -390,12 +475,13 @@ function initContacto() {
 
   if (whatsappBtn) {
     whatsappBtn.addEventListener('click', function() {
-      var data = getFormData();
-      if (!data.nombre || !data.correo || !data.telefono) {
-        var firstInvalid = document.querySelector('#nombre:invalid, #correo:invalid, #telefono:invalid');
-        if (firstInvalid) firstInvalid.focus();
+      var invalidos = validarFormulario();
+      if (invalidos.length) {
+        var first = document.getElementById(invalidos[0]);
+        if (first) first.focus();
         return;
       }
+      var data = getFormData();
       sendWhatsApp(data);
       openToast();
       form.reset();

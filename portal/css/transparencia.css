@@ -47,7 +47,7 @@
 .doc-card {
   background: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   padding: 1.2rem;
   width: 200px;
   text-align: center;
@@ -75,7 +75,7 @@
   color: #fff;
   text-decoration: none;
   padding: 0.4rem 1rem;
-  border-radius: 5px;
+  border-radius: var(--radius-xs);
   font-size: 0.85rem;
   font-weight: 600;
   transition: background 0.3s ease;
@@ -94,7 +94,7 @@
 .stat-card {
   background: #fff;
   border: 1px solid #e0e0e0;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 2rem 1.5rem;
   width: 200px;
   text-align: center;
@@ -164,7 +164,7 @@
   max-width: 800px;
   margin: 0 auto;
   background: #fff;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.06);
   text-align: center;
@@ -178,7 +178,7 @@
 .donaciones-content .bank-info {
   background: #f9f2f2;
   border: 1px solid rgba(var(--primary-rgb), 0.2);
-  border-radius: 8px;
+  border-radius: var(--radius-sm);
   padding: 1rem;
   display: inline-block;
   text-align: left;
@@ -193,7 +193,7 @@
   max-width: 800px;
   margin: 0 auto;
   background: #fff;
-  border-radius: 12px;
+  border-radius: var(--radius-md);
   padding: 2rem;
   box-shadow: 0 4px 8px rgba(0,0,0,0.06);
   text-align: center;
@@ -213,7 +213,7 @@
 }
 .tupa-embed embed {
   border: 2px solid var(--primary);
-  border-radius: 10px;
+  border-radius: var(--radius-sm);
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   max-width: 100%;
 }

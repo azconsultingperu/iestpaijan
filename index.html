@@ -52,14 +52,14 @@
                         <p>Programas Académicos</p>
                     </div>
                     <div class="hero__stat">
-                        <div class="hero__stat-icon"><i class="fas fa-graduation-cap"></i></div>
-                        <div class="hero__stat-numero" data-target="500" data-suffix="+">0</div>
-                        <p>Egresados</p>
+                        <div class="hero__stat-icon"><i class="fas fa-credit-card"></i></div>
+                        <div class="hero__stat-numero" data-target="100" data-suffix="%">0</div>
+                        <p>Matrícula gratuita</p>
                     </div>
                     <div class="hero__stat">
-                        <div class="hero__stat-icon"><i class="fas fa-chalkboard-teacher"></i></div>
-                        <div class="hero__stat-numero" data-target="25" data-suffix="+">0</div>
-                        <p>Docentes Calificados</p>
+                        <div class="hero__stat-icon"><i class="fas fa-certificate"></i></div>
+                        <div class="hero__stat-numero" data-target="498">0</div>
+                        <p>R.M. de creación</p>
                     </div>
                 </div>
                 <a href="#beneficios" class="hero__scroll-btn" aria-label="Desplázate a beneficios">
@@ -171,10 +171,10 @@
         <!-- Programas -->
         <section id="programas" class="section">
             <div class="container">
-                <header class="section__header" style="text-align:center; margin-bottom:2.5rem">
+                <header class="section__header section__header--center">
                     <span class="beneficios-tag">NUESTRA OFERTA</span>
-                    <h2 style="font-size:clamp(1.6rem,3.2vw,2.2rem); font-weight:800; color:#1a1a2e; margin:0 0 0.5rem; letter-spacing:-0.03em">Programas de Estudio</h2>
-                    <p style="color:#666; max-width:520px; margin:0 auto">Formación técnica gratuita con titulación oficial a nombre de la Nación</p>
+                    <h2 class="section__title">Programas de Estudio</h2>
+                    <p class="section__subtitle">Formación técnica gratuita con titulación oficial a nombre de la Nación</p>
                 </header>
                 <div class="programa-layout">
                     <aside class="programa-sidebar">
@@ -239,10 +239,10 @@
         <!-- Noticias -->
         <section id="noticias" class="section noticias-section">
             <div class="container">
-                <header class="section__header" style="text-align:center; margin-bottom:2.5rem">
+                <header class="section__header section__header--center">
                     <span class="beneficios-tag">MEDIOS</span>
-                    <h2 style="font-size:clamp(1.6rem,3.2vw,2.2rem); font-weight:800; color:#1a1a2e; margin:0 0 0.5rem; letter-spacing:-0.03em">Noticias y Eventos</h2>
-                    <p style="color:#666; max-width:520px; margin:0 auto">Lo último de la comunidad académica del IESTP Paiján</p>
+                    <h2 class="section__title">Noticias y Eventos</h2>
+                    <p class="section__subtitle">Lo último de la comunidad académica del IESTP Paiján</p>
                 </header>
                 <div class="news-feed" id="news-feed"></div>
             </div>
@@ -318,15 +318,18 @@
                         <div class="form__group reveal-on-scroll">
                             <input class="form__input" type="text" id="nombre" placeholder=" " required />
                             <label class="form__label-float" for="nombre">Nombre completo</label>
+                            <div class="form__error" id="error-nombre">Escribe tu nombre completo.</div>
                         </div>
                         <div class="form__row reveal-on-scroll">
                             <div class="form__group">
                                 <input class="form__input" type="email" id="correo" placeholder=" " required />
                                 <label class="form__label-float" for="correo">Correo electrónico</label>
+                                <div class="form__error" id="error-correo">Escribe un correo electrónico válido.</div>
                             </div>
                             <div class="form__group">
                                 <input class="form__input" type="tel" id="telefono" placeholder=" " required />
                                 <label class="form__label-float" for="telefono">Teléfono</label>
+                                <div class="form__error" id="error-telefono">Escribe tu teléfono.</div>
                             </div>
                         </div>
                         <div class="form__group reveal-on-scroll">
@@ -337,6 +340,7 @@
                                 <option value="enfermeria">Enfermería Técnica</option>
                             </select>
                             <label class="form__label-float" for="programa">Programa de interés</label>
+                            <div class="form__error" id="error-programa">Selecciona un programa de interés.</div>
                         </div>
                         <div class="form__group reveal-on-scroll">
                             <textarea class="form__input" id="mensaje" rows="4" placeholder=" "></textarea>
@@ -360,25 +364,27 @@
     </main>
 
     <!-- Toast de confirmación -->
-    <div id="toast-modal" class="toast-modal" role="alert">
+    <div id="toast-modal" class="toast-modal" role="status" aria-live="polite">
         <div class="toast-content">
             <div class="toast-icon">
                 <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
             </div>
-            <h3>¡Mensaje enviado con éxito!</h3>
-            <p>Gracias por contactarnos. Te responderemos a la brevedad.</p>
+            <div class="toast-text">
+                <h3>¡Mensaje enviado con éxito!</h3>
+                <p>Te responderemos a la brevedad.</p>
+            </div>
             <button class="toast-btn" id="toast-close">Entendido</button>
         </div>
     </div>
 
     <!-- Modal de noticias -->
-    <div id="news-modal" class="modal">
+    <div id="news-modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
         <div class="modal-content">
-            <button class="modal__close" id="modal-close">&times;</button>
+            <button class="modal__close" id="modal-close" aria-label="Cerrar">&times;</button>
             <div class="modal-content__image">
-                <button class="modal__nav modal__nav--prev" id="modal-prev">&#10094;</button>
+                <button class="modal__nav modal__nav--prev" id="modal-prev" aria-label="Noticia anterior">&#10094;</button>
                 <img id="modal-img" src="" alt="Imagen de la noticia">
-                <button class="modal__nav modal__nav--next" id="modal-next">&#10095;</button>
+                <button class="modal__nav modal__nav--next" id="modal-next" aria-label="Noticia siguiente">&#10095;</button>
             </div>
             <div class="modal-content__body">
                 <span class="modal-content__category" id="modal-category"></span>
