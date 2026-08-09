@@ -11,6 +11,10 @@ archivo. Formato basado en [Keep a Changelog](https://keepachangelog.com/es/1.1.
 - `README.md`: ficha institucional del portal (creación en 1987, R.M. N° 498-87-ED, matrícula gratuita, programas, contacto y secciones), verificada directamente en el sitio.
 - `CHANGELOG.md`: registro de cambios notables del portal.
 
+### Cambiado
+
+- README: línea final con enlace a `STRUCTURE.md` (acceso de navegación, sin información técnica en la ficha).
+
 ### Corregido
 
 - El README registra la discrepancia real del sitio sobre la resolución de creación (R.M. N° 498-87-ED en el encabezado/pie frente a R.M. N.° 1176-87-ED citada en la reseña histórica), sin decidir por el visitante.

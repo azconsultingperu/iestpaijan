@@ -31,4 +31,4 @@ El portal publica la información oficial de la institución organizada en las s
 - **Servicios al estudiante:** bienestar y empleabilidad, bolsa laboral, consultorio psicológico y servicio de tópico, además del manual de campus.
 - **Otras secciones:** noticias y eventos, galería de imágenes, becas, documentos y enlaces institucionales (Registra, Titula, Conecta y Avanza, del MINEDU).
 
-_Es una ficha descriptiva del sitio: no incluye stack, estructura de carpetas ni instrucciones de ejecución._
+> **Estructura del repositorio:** consultar [STRUCTURE.md](STRUCTURE.md).
