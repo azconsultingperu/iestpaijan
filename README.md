@@ -2,6 +2,17 @@
 
 Sitio web público del **Instituto de Educación Superior Tecnológico Público Paiján** (Paiján, La Libertad, Perú): portada con oferta académica, admisión, programas, transparencia, servicios, galería y noticias institucionales.
 
+## Ficha
+
+| Campo | Valor |
+|---|---|
+| **Institución** | Instituto de Educación Superior Tecnológico Público Paiján (IESTP Paiján) |
+| **Tipo de plataforma** | Portal institucional estático |
+| **Eslogan** | ¡Crea, Innova e Inspira! |
+| **Matrícula** | 100 % gratuita (según el sitio) |
+| **R.M. de creación** | 498 (según el sitio) |
+| **Dominio** | `https://www.iestpaijan.edu.pe/` |
+
 ## Stack
 
 - **Frontend:** HTML, CSS y JavaScript vanilla. Sin frameworks, sin build, sin dependencias de runtime.

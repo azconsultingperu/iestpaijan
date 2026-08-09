@@ -7,6 +7,7 @@ Formato basado en [Keep a Changelog](https://keepachangelog.com/es/1.1.0/). Las 
 
 ### Added
 
+- `README.md`: ficha institucional (eslogan, matrícula, R.M. de creación, dominio) como bloque "Ficha".
 - `README.md`: documentación del repositorio (stack, estructura, cómo correr, cómo publicar contenido y tokens de diseño), creado desde verificación directa del código.
 - `CHANGELOG.md`: historial de cambios (este archivo).
 - Accesibilidad: `:focus-visible` global y soporte `prefers-reduced-motion` (desactiva Ken Burns, reveal-on-scroll y overshoots de transición).
