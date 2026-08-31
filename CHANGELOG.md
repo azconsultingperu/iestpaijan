@@ -10,14 +10,17 @@ archivo. Formato basado en [Keep a Changelog](https://keepachangelog.com/es/1.1.
 - `STRUCTURE.md`: mapa del repositorio para mantenimiento (dónde se edita cada contenido, formato de imágenes y scripts de datos).
 - `README.md`: ficha institucional del portal (creación en 1987, R.M. N° 498-87-ED, matrícula gratuita, programas, contacto y secciones), verificada directamente en el sitio.
 - `CHANGELOG.md`: registro de cambios notables del portal.
+- Botón flotante de contacto tipo speed dial (réplica Buttonizer) en `index.html` (inline HTML+CSS+JS) y `portal/js/include.js` + `portal/css/styles.css`: principal WhatsApp `#25D366` (`https://wa.me/51919490297`), sub-botones Llamar `tel:+51919490297` `#4a90d9`, Email `mailto:admision@iestpaijan.edu.pe` `#7a1f2b`, Ubicación `https://www.google.com/maps/search/?api=1&query=...` `#c9a24b`; abanico 90° navaja suiza (`--x:-72/-52/-12`, `--y:-6/-50/-78` desktop, `-62/-44/-8` móvil), animación fade+slide, tooltips, `aria-label`, soporte hover/touch y desplazamiento de `to-top` (`to-top--dial-open` + `body:has()`).
 
 ### Cambiado
 
 - README: línea final con enlace a `STRUCTURE.md` (acceso de navegación, sin información técnica en la ficha).
+- `portal/css/styles.css`: `.whatsapp-float` oculto, nuevo `.contact-dial` con `z-index:999` sin romper layout, `to-top` con transición `bottom` y `body:has()` fallback.
 
 ### Corregido
 
 - El README registra la discrepancia real del sitio sobre la resolución de creación (R.M. N° 498-87-ED en el encabezado/pie frente a R.M. N.° 1176-87-ED citada en la reseña histórica), sin decidir por el visitante.
+- Colisión de iconos en abanico: tamaño reducido (`52px/42px`, iconos `26px/18px`) y separación aumentada (`48.3px` vs `42px`); `to-top` ya no tapa el abanico al desplegarse.
 
 ## [2026-08-09]
 

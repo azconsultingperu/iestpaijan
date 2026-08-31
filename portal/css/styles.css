@@ -2585,7 +2585,32 @@ select.form__input {
   opacity: 0;
   visibility: hidden;
   pointer-events: none;
-  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  transition: opacity 0.35s ease, visibility 0.35s ease, transform 0.25s ease, box-shadow 0.25s ease, bottom 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.to-top--dial-open {
+  bottom: 160px;
+}
+
+@media (max-width: 600px) {
+  .to-top--dial-open {
+    bottom: 148px;
+  }
+}
+
+/* Fallback CSS puro sin JS — si el navegador soporta :has */
+body:has(.contact-dial:hover) #to-top,
+body:has(.contact-dial.is-open) #to-top,
+body:has(.contact-dial:focus-within) #to-top {
+  bottom: 160px;
+}
+
+@media (max-width: 600px) {
+  body:has(.contact-dial:hover) #to-top,
+  body:has(.contact-dial.is-open) #to-top,
+  body:has(.contact-dial:focus-within) #to-top {
+    bottom: 148px;
+  }
 }
 
 .to-top svg {
@@ -2752,7 +2777,8 @@ select.form__input {
 
   /* Ocultar botones flotantes cuando el menú está abierto */
   body.nav-open .to-top,
-  body.nav-open .whatsapp-float {
+  body.nav-open .whatsapp-float,
+  body.nav-open .contact-dial {
     opacity: 0;
     pointer-events: none;
   }
@@ -3151,36 +3177,209 @@ p {
 }
 
 /* ===============================
-   BOTÓN FLOTANTE WHATSAPP
+   BOTÓN FLOTANTE WHATSAPP - SPEED DIAL (replica Buttonizer)
+   Reemplaza .whatsapp-float simple por componente abanico
 ================================ */
-.whatsapp-float {
+.whatsapp-float { display: none !important; }
+
+.contact-dial {
   position: fixed;
   bottom: 20px;
   right: 20px;
   z-index: 999;
+  width: 52px;
+  height: 52px;
+}
+
+.contact-dial__main {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 48px;
-  height: 48px;
-  background: #25d366;
+  width: 52px;
+  height: 52px;
+  background: #25D366;
   border-radius: 50%;
-  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.3);
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
   color: #fff;
-  transition:
-    transform 0.3s ease,
-    box-shadow 0.3s ease,
-    opacity 0.25s ease;
+  text-decoration: none;
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
 }
 
-.whatsapp-float:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.4);
+.contact-dial__main:hover {
+  transform: scale(1.08);
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
 }
 
-.whatsapp-float svg {
+.contact-dial__main:active {
+  transform: scale(0.96);
+}
+
+.contact-dial__main svg {
   width: 26px;
   height: 26px;
+}
+
+/* Contenedor ancla para abanico */
+.contact-dial__actions {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  width: 42px;
+  height: 42px;
+  pointer-events: none;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.2s ease, visibility 0.2s ease;
+}
+
+.contact-dial:hover .contact-dial__actions,
+.contact-dial:focus-within .contact-dial__actions,
+.contact-dial.is-open .contact-dial__actions {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* — Botones en abanico tipo navaja suiza (90° arc) — */
+.contact-dial__btn {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  color: #fff;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.18);
+  opacity: 0;
+  transform: translate(0, 0) scale(0.85);
+  transition: opacity 0.28s ease, transform 0.38s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease, filter 0.25s ease;
+}
+
+.contact-dial:hover .contact-dial__btn,
+.contact-dial:focus-within .contact-dial__btn,
+.contact-dial.is-open .contact-dial__btn {
+  opacity: 1;
+}
+
+.contact-dial__btn:nth-child(1) { --x: -72px; --y: -6px; transition-delay: 0.06s; }
+.contact-dial__btn:nth-child(2) { --x: -52px; --y: -50px; transition-delay: 0.12s; }
+.contact-dial__btn:nth-child(3) { --x: -12px; --y: -78px; transition-delay: 0.18s; }
+
+.contact-dial:hover .contact-dial__btn:nth-child(1),
+.contact-dial:focus-within .contact-dial__btn:nth-child(1),
+.contact-dial.is-open .contact-dial__btn:nth-child(1) { transform: translate(var(--x), var(--y)) scale(1); transition-delay: 0.18s; }
+.contact-dial:hover .contact-dial__btn:nth-child(2),
+.contact-dial:focus-within .contact-dial__btn:nth-child(2),
+.contact-dial.is-open .contact-dial__btn:nth-child(2) { transform: translate(var(--x), var(--y)) scale(1); transition-delay: 0.12s; }
+.contact-dial:hover .contact-dial__btn:nth-child(3),
+.contact-dial:focus-within .contact-dial__btn:nth-child(3),
+.contact-dial.is-open .contact-dial__btn:nth-child(3) { transform: translate(var(--x), var(--y)) scale(1); transition-delay: 0.06s; }
+
+.contact-dial__btn:hover {
+  transform: translate(var(--x), var(--y)) scale(1.08) !important;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.22);
+  filter: brightness(1.07);
+}
+
+.contact-dial__btn:active {
+  transform: translate(var(--x), var(--y)) scale(0.96) !important;
+}
+
+.contact-dial__btn svg {
+  width: 18px;
+  height: 18px;
+  stroke: currentColor;
+}
+
+.contact-dial__btn--call {
+  background: #4a90d9;
+}
+
+.contact-dial__btn--email {
+  background: #7a1f2b;
+}
+
+.contact-dial__btn--location {
+  background: #c9a24b;
+  color: #fff;
+}
+
+.contact-dial__tooltip {
+  position: absolute;
+  right: 58px;
+  top: 50%;
+  transform: translateY(-50%) translateX(6px);
+  background: #1e1e2e;
+  color: #fff;
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.38rem 0.7rem;
+  border-radius: 6px;
+  white-space: nowrap;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.15);
+  letter-spacing: 0.01em;
+}
+
+.contact-dial__tooltip::after {
+  content: "";
+  position: absolute;
+  right: -5px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 5px solid transparent;
+  border-left-color: #1e1e2e;
+}
+
+.contact-dial__btn:hover .contact-dial__tooltip,
+.contact-dial__btn:focus-visible .contact-dial__tooltip {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(-50%) translateX(0);
+}
+
+@media (max-width: 600px) {
+  .contact-dial {
+    bottom: 16px;
+    right: 16px;
+    width: 54px;
+    height: 54px;
+  }
+  .contact-dial__main {
+    width: 48px;
+    height: 48px;
+  }
+  .contact-dial__main svg { width: 24px; height: 24px; }
+  .contact-dial__btn { width: 38px; height: 38px; }
+  .contact-dial__btn:nth-child(1) { --x: -62px; --y: -6px; }
+  .contact-dial__btn:nth-child(2) { --x: -44px; --y: -44px; }
+  .contact-dial__btn:nth-child(3) { --x: -8px; --y: -66px; }
+  .contact-dial__tooltip { font-size: 0.72rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-dial__actions,
+  .contact-dial__btn,
+  .contact-dial__main,
+  .contact-dial__tooltip {
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body.nav-open .contact-dial {
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* ===============================
