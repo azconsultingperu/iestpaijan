@@ -48,13 +48,19 @@
 
 .docente__area h2 {
   font-size: 1.8rem;
-  margin-bottom: 25px;
+  margin: 0 auto 25px auto;
+  max-width: 1020px;
   color: #800000;
   border-left: 6px solid #800000;
   padding-left: 12px;
   display: flex;
   align-items: center;
   gap: 10px;
+  box-sizing: border-box;
+}
+
+.docente__area:not(:first-child) h2 {
+  margin-top: 2.5rem;
 }
 
 /* === Grid de docentes — 2 columnas === */
