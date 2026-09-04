@@ -1,7 +1,7 @@
 /* ====== FRANJA DE SECCIÓN ====== */
 .section-banner {
   position: relative;
-  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
+  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp")) no-repeat center center/cover;
   background-attachment: scroll; /* era fixed: eliminado */
   padding: 3rem 1rem;
   /* border-radius: var(--radius-md); */

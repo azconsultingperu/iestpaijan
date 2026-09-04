@@ -168,13 +168,22 @@ function initNoticias() {
     const imgBase = isPortalDir ? 'imagenes/' : 'portal/imagenes/';
 
 const noticias = [
-      { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026. Los interesados deben acercarse a la oficina de administración para recibir mayores detalles e iniciar el proceso de titulación correspondiente.", imagen: [imgBase + "noticias/aviso-2026-1.jpeg", imgBase + "noticias/aviso-2026-1.jpeg"], categoria: "comunicado" },
-      { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar por la irreparable pérdida de nuestro querido miembro de la comunidad educativa. Paz en su tumba.", imagen: [imgBase + "noticias/fallesimiento_07_05_2026.jpeg", imgBase + "noticias/fallesimiento_07_05_2026.jpeg"], categoria: "comunicado" },
-      { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador a toda nuestra comunidad educativa. Reconocimiento especial a nuestros docentes y personal administrativo que día a día construyen el futuro de nuestros estudiantes.", imagen: [imgBase + "noticias/dia_del_trabajador.jpeg", imgBase + "noticias/dia_del_trabajador.jpeg"], categoria: "evento" },
-      { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación 2026-1, un evento especial donde celebraremos el esfuerzo y dedicación de nuestros egresados que culminan exitosamente su formación profesional.", imagen: [imgBase + "noticias/graduacion2026.jpg", imgBase + "noticias/integrantes2026.jpg"], categoria: "evento" },
-      { titulo: "Examen de Admisión 2026", fecha: "03/04/2026", contenido: "Prepárate para ingresar al IESTP Paiján. El examen de admisión 2026 está próximo a realizarse. Inscríbete y asegura tu vacante en nuestros programas académicos de alta demanda.", imagen: [imgBase + "admision/primer_admision/1.jpeg"], categoria: "admision" },
-      { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones para el Proceso de Admisión 2026-1. No pierdas la oportunidad de formar parte de nuestra institución y construir tu futuro profesional.", imagen: [imgBase + "noticias/inicio_clases20252.jpg"], categoria: "admision" },
+      { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026. Los interesados deben acercarse a la oficina de administración para recibir mayores detalles e iniciar el proceso de titulación correspondiente.", imagen: [imgBase + "noticias/aviso-2026-1", imgBase + "noticias/aviso-2026-1"], categoria: "comunicado" },
+      { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar por la irreparable pérdida de nuestro querido miembro de la comunidad educativa. Paz en su tumba.", imagen: [imgBase + "noticias/fallesimiento_07_05_2026", imgBase + "noticias/fallesimiento_07_05_2026"], categoria: "comunicado" },
+      { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador a toda nuestra comunidad educativa. Reconocimiento especial a nuestros docentes y personal administrativo que día a día construyen el futuro de nuestros estudiantes.", imagen: [imgBase + "noticias/dia_del_trabajador", imgBase + "noticias/dia_del_trabajador"], categoria: "evento" },
+      { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación 2026-1, un evento especial donde celebraremos el esfuerzo y dedicación de nuestros egresados que culminan exitosamente su formación profesional.", imagen: [imgBase + "noticias/graduacion2026", imgBase + "noticias/integrantes2026"], categoria: "evento" },
+      { titulo: "Examen de Admisión 2026", fecha: "03/04/2026", contenido: "Prepárate para ingresar al IESTP Paiján. El examen de admisión 2026 está próximo a realizarse. Inscríbete y asegura tu vacante en nuestros programas académicos de alta demanda.", imagen: [imgBase + "admision/primer_admision/1"], categoria: "admision" },
+      { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones para el Proceso de Admisión 2026-1. No pierdas la oportunidad de formar parte de nuestra institución y construir tu futuro profesional.", imagen: [imgBase + "noticias/inicio_clases20252"], categoria: "admision" },
     ];
+
+    function toBase(src){ return String(src||'').replace(/\.(jpe?g|png|avif|webp)$/i,''); }
+    function pictureForLocal(base, alt){
+      var b = toBase(base);
+      var a = String(alt||'').replace(/"/g,'&quot;');
+      if(window.pictureFor) return window.pictureFor(b, alt);
+      var ph = window.placeHolderImg || placeHolderImg;
+      return '<picture><source srcset="'+b+'.avif" type="image/avif"><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=\''+ph.replace(/'/g,"\\'")+'\'"></picture>';
+    }
 
     const placeHolderImg = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(
       '<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340"><rect width="600" height="340" fill="#efece6"/><g fill="none" stroke="#c4bdb3" stroke-width="10" stroke-linecap="round"><circle cx="300" cy="150" r="40"/><path d="M210 260 q35 -55 90 -55 q40 0 90 55"/></g></svg>'
@@ -244,7 +253,21 @@ const noticias = [
       var article = noticias[index];
       if (!article) return;
       currentArticleIndex = index;
-      if (modalImg) modalImg.src = article.imagen[0];
+      if (modalImg){
+        var mBase = toBase(article.imagen[0]);
+        modalImg.src = mBase + ".webp";
+        modalImg.onerror = function(){
+          if(this.src.endsWith('.webp')){ this.onerror=null; this.src = mBase + ".avif"; this.onerror=function(){ if(window.placeHolderImg||placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg||placeHolderImg; } }; }
+          else if(window.placeHolderImg||placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg||placeHolderImg; }
+        };
+        var mp = modalImg.closest ? modalImg.closest("picture") : null;
+        if(mp){
+          var av = mp.querySelector('source[type="image/avif"]');
+          var wv = mp.querySelector('source[type="image/webp"]');
+          if(av) av.srcset = mBase + ".avif";
+          if(wv) wv.srcset = mBase + ".webp";
+        }
+      }
       if (modalTitle) modalTitle.textContent = article.titulo;
       if (modalDate) modalDate.innerHTML = renderDateSvg() + article.fecha;
       if (modalText) modalText.textContent = article.contenido;
@@ -261,10 +284,11 @@ const noticias = [
       card.className = "news-card reveal-on-scroll";
       card.style.setProperty("--i", index);
       card.setAttribute("aria-label", "Ver noticia: " + noticia.titulo);
+      var nPicture = pictureForLocal(noticia.imagen[0], noticia.titulo);
       card.innerHTML =
         '<div class="news-card__image">' +
           renderCategory(noticia.categoria) +
-          '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" loading="lazy">' +
+          nPicture +
         '</div>' +
         '<div class="news-card__content">' +
           '<span class="news-card__date">' + renderDateSvg() + noticia.fecha + '</span>' +
@@ -276,7 +300,8 @@ const noticias = [
       if (cardImg) {
         cardImg.addEventListener('error', function () {
           this.onerror = null;
-          this.src = placeHolderImg;
+          this.src = window.placeHolderImg || placeHolderImg;
+          console.warn('[media] missing avif/webp for', toBase(noticia.imagen[0]));
         });
       }
 

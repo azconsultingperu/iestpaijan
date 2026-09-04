@@ -1,7 +1,7 @@
 /* ====== FRANJA DE SECCIÓN ====== */
 .section-banner {
   position: relative;
-  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
+  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp")) no-repeat center center/cover;
   padding: 3rem 1rem;
   /* border-radius: var(--radius-md); */
   /* margin: 2rem auto; */
@@ -57,63 +57,184 @@
   gap: 10px;
 }
 
-/* === Grid de docentes === */
+/* === Grid de docentes — 2 columnas === */
 .docente__grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 25px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 1020px;
+  margin: 0 auto;
 }
 
-/* === Tarjetas de docentes === */
+/* === Tarjetas de docentes — rediseño 2-col horizontal === */
 .docente__card {
   background: #fff;
-  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
   overflow: hidden;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.08);
-  text-align: center;   /* centra texto y contenido */
-  padding: 20px 15px;
+  box-shadow: var(--shadow-sm);
+  text-align: left;
+  padding: 2rem 1.8rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  display: flex;              /* NUEVO */
-  flex-direction: column;     /* NUEVO */
-  align-items: center;        /* NUEVO -> centra horizontal */
-  justify-content: center;    /* NUEVO -> centra vertical */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  min-height: 160px;
 }
-
-.docente__card img {
-  width: 120px;
-  height: 120px;
-  object-fit: cover;
-  border-radius: 50%;
-  margin-bottom: 15px;
-  border: 3px solid #80000033;
-  display: block;             /* aseguro que sea bloque */
-  margin-left: auto;          /* centra en caso de fallback */
-  margin-right: auto;         /* centra en caso de fallback */
-}
-
 
 .docente__card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 18px rgba(0,0,0,0.15);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-md);
 }
 
+.docente__card:hover .docente__pic {
+  border-color: var(--primary);
+}
 
+.docente__pic {
+  flex-shrink: 0;
+  width: 110px;
+  height: 110px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(198,40,40,0.12);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+
+.docente__pic picture,
+.docente__pic img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+  margin: 0;
+  border: none;
+}
+
+.docente__body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 0;
+}
 
 .docente__card h3 {
-  font-size: 1.1rem;
-  color: #333;
-  font-weight: 600;
+  font-size: 1.05rem;
+  color: #1a1a2e;
+  font-weight: 700;
   margin: 0;
+  line-height: 1.3;
 }
 
-/* === Responsive === */
+.docente__grado {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.docente__email {
+  font-size: 0.84rem;
+  color: var(--text-muted);
+  margin: 0;
+  word-break: break-all;
+  line-height: 1.4;
+}
+
+.docente__email a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.docente__email a:hover {
+  text-decoration: underline;
+}
+
+.docente__actions {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+  width: 100%;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.docente__actions .btn {
+  flex: 0 0 auto;
+  width: auto;
+  min-width: auto;
+  max-width: none;
+  padding: 0.45rem 0.9rem;
+  font-size: 0.82rem;
+  border-radius: 6px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1.5px solid transparent;
+}
+
+.docente__actions .btn--primary {
+  background: var(--primary);
+  color: #fff;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px rgba(198,40,40,0.18);
+}
+
+.docente__actions .btn--primary:hover {
+  background: var(--primary-dark);
+  border-color: var(--primary-dark);
+  transform: translateY(-1px);
+}
+
+.docente__actions .btn--secondary {
+  background: #fff;
+  color: var(--primary);
+  border-color: rgba(198,40,40,0.2);
+}
+
+.docente__actions .btn--secondary:hover {
+  background: rgba(198,40,40,0.06);
+  border-color: var(--primary);
+}
+
+/* === Responsive — 1 col móvil === */
 @media (max-width: 768px) {
+  .docente__grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
   .section-banner h1 {
     font-size: 2rem;
   }
 
   .docente__area h2 {
     font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .docente__card {
+    flex-direction: column;
+    text-align: center;
+    gap: 0.75rem;
+  }
+  .docente__body {
+    align-items: center;
+  }
+  .docente__actions {
+    justify-content: center;
+    flex-wrap: wrap;
   }
 }

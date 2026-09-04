@@ -1,6 +1,42 @@
 (function () {
   'use strict';
 
+  /* ── Media helpers (AVIF+WEBP) ── */
+  var placeHolderImg = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340"><rect width="600" height="340" fill="#efece6"/><g fill="none" stroke="#c4bdb3" stroke-width="10" stroke-linecap="round"><circle cx="300" cy="150" r="40"/><path d="M210 260 q35 -55 90 -55 q40 0 90 55"/></g></svg>');
+  // Expose globally for other modules (galeria, noticias, etc.)
+  if (typeof window !== 'undefined') window.placeHolderImg = placeHolderImg;
+
+  function escapeHtml(str) {
+    return String(str).replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  function pictureFor(base, alt, loading) {
+    var b = String(base || '');
+    var a = escapeHtml(alt || '');
+    var ld = loading || 'lazy';
+    var onerror = 'this.onerror=null;this.src=window.placeHolderImg||\'' + placeHolderImg + '\'';
+    return '<picture><source srcset="' + b + '.avif" type="image/avif"><source srcset="' + b + '.webp" type="image/webp"><img src="' + b + '.webp" alt="' + a + '" loading="' + ld + '" onerror="' + onerror + '"></picture>';
+  }
+
+  function pictureInnerFor(base, alt, loading) {
+    var b = String(base || '');
+    var a = escapeHtml(alt || '');
+    var ld = loading || 'lazy';
+    var onerror = 'this.onerror=null;this.src=window.placeHolderImg||\'' + placeHolderImg + '\';console.warn(\'[media] missing avif/webp for\',\'' + b.replace(/'/g,'\\\'') + '\')';
+    return '<source srcset="' + b + '.avif" type="image/avif"><source srcset="' + b + '.webp" type="image/webp"><img src="' + b + '.webp" alt="' + a + '" loading="' + ld + '" onerror="' + onerror + '">';
+  }
+
+  function imageSetFor(base) {
+    var b = String(base || '');
+    return 'image-set(url("' + b + '.avif") type("image/avif"), url("' + b + '.webp") type("image/webp"))';
+  }
+
+  if (typeof window !== 'undefined') {
+    window.pictureFor = pictureFor;
+    window.pictureInnerFor = pictureInnerFor;
+    window.imageSetFor = imageSetFor;
+  }
+
   /* ── Config from data attributes ── */
   // data-root="" for root index page, data-root="../" for portal/* pages
   //   Root:  links use "portal/xxx/", images use "portal/imagenes/..."

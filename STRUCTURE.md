@@ -36,7 +36,7 @@ iestpaijan/
 
 ## Assets
 
-- Imágenes en 3 formatos siempre: **AVIF y WebP** + fallback **JPG/PNG** (mismo nombre, distinta extensión), servidas con `<picture>`.
+- Imágenes en 2 formatos: **AVIF y WebP** (mismo nombre, distinta extensión), servidas con `<picture>` (`<source avif>` → `<source webp>` → `<img webp>`). No se commitean JPG/PNG duplicados (excepción: `logo-transp.png` para favicon + `whatsapp.svg` vector). Nuevas imágenes: convertir original a `base.avif` + `base.webp` vía `magick`/`avifenc` o skill `image-optimizer`, y referenciar por base sin extensión usando `window.pictureFor(base, alt)` (ver `portal/js/include.js`). Validar con `bash scripts/validate-images.sh`.
 - Logotipos en `portal/imagenes/` (`logo-transp.*`, `logo-white-*`, `logo-black-*`, `lo_negro.*`).
 - Carreras con portadas propias en `portal/imagenes/carreras/`.
 - Galería por año y evento: `portal/imagenes/galeria_eventos/<año>/<evento>/`.

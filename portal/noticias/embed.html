@@ -41,12 +41,12 @@
 
 <script>
 const noticias = [
-  { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026.", imagen: ["../imagenes/noticias/aviso-2026-1.jpeg", "../imagenes/noticias/aviso-2026-1.jpeg"], categoria: "comunicado" },
-  { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: ["../imagenes/noticias/fallesimiento_07_05_2026.jpeg", "../imagenes/noticias/fallesimiento_07_05_2026.jpeg"], categoria: "comunicado" },
-  { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: ["../imagenes/noticias/dia_del_trabajador.jpeg", "../imagenes/noticias/dia_del_trabajador.jpeg"], categoria: "evento" },
-  { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: ["../imagenes/noticias/graduacion2026.jpg", "../imagenes/noticias/integrantes2026.jpg"], categoria: "evento" },
-  { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: ["../imagenes/admision/primer_admision/1.jpeg"], categoria: "admision" },
-  { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: ["../imagenes/noticias/inicio_clases20252.jpg"], categoria: "admision" },
+  { titulo: "2do proceso de titulación 2026", fecha: "08/07/2026", contenido: "Inscripciones abiertas para el segundo proceso de titulación 2026.", imagen: ["../imagenes/noticias/aviso-2026-1", "../imagenes/noticias/aviso-2026-1"], categoria: "comunicado" },
+  { titulo: "Sensible fallecimiento", fecha: "07/05/2026", contenido: "La dirección, docentes y estudiantes expresamos nuestro profundo pesar.", imagen: ["../imagenes/noticias/fallesimiento_07_05_2026", "../imagenes/noticias/fallesimiento_07_05_2026"], categoria: "comunicado" },
+  { titulo: "Día del Trabajador", fecha: "02/05/2026", contenido: "Feliz día del Trabajador", imagen: ["../imagenes/noticias/dia_del_trabajador", "../imagenes/noticias/dia_del_trabajador"], categoria: "evento" },
+  { titulo: "Invitación a la Ceremonia de Titulación 2026-1", fecha: "23/04/2026", contenido: "Te invitamos a la ceremonia de titulación.", imagen: ["../imagenes/noticias/graduacion2026", "../imagenes/noticias/integrantes2026"], categoria: "evento" },
+  { titulo: "Examen de Admisión", fecha: "03/04/2026", contenido: "Prepárate para ingresar!", imagen: ["../imagenes/admision/primer_admision/1"], categoria: "admision" },
+  { titulo: "Inicio del Proceso de Admisión 2026-1", fecha: "12/08/2025", contenido: "Ya están abiertas las inscripciones.", imagen: ["../imagenes/noticias/inicio_clases20252"], categoria: "admision" },
 ];
 
 (function() {
@@ -64,16 +64,21 @@ const noticias = [
   const prevBtn = document.getElementById("modal-prev");
   const nextBtn = document.getElementById("modal-next");
 
+  function toBase(s){ return String(s||'').replace(/\.(jpe?g|png|avif|webp)$/i,''); }
   let currentArticleIndex = 0;
 
   noticias.forEach(function(noticia, index) {
     const card = document.createElement("div");
     card.className = "news-card";
     card.style.setProperty("--i", index);
+    var baseE = toBase(noticia.imagen[0]);
+    var altE = String(noticia.titulo).replace(/"/g,'&quot;');
+    var picE = '<picture><source srcset="' + baseE + '.avif" type="image/avif"><source srcset="' + baseE + '.webp" type="image/webp"><img src="' + baseE + '.webp" alt="' + altE + '" loading="lazy"></picture>';
+    if (window.pictureFor) picE = window.pictureFor(baseE, noticia.titulo);
     card.innerHTML =
       '<div class="news-card__image">' +
         '<span class="news-card__category news-card__category--' + noticia.categoria + '">' + noticia.categoria + '</span>' +
-        '<img src="' + noticia.imagen[0] + '" alt="' + noticia.titulo + '" loading="lazy">' +
+        picE +
       '</div>' +
       '<div class="news-card__content">' +
         '<span class="news-card__date">' + noticia.fecha + '</span>' +
@@ -95,7 +100,7 @@ const noticias = [
   function showArticle(index) {
     const article = noticias[index];
     if (!article) return;
-    if (modalImg) modalImg.src = article.imagen[0];
+    if (modalImg) { var b=toBase(article.imagen[0]); modalImg.src=b+".webp"; modalImg.onerror=function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".avif"; }}; }
     if (modalTitle) modalTitle.textContent = article.titulo;
     if (modalDate) modalDate.textContent = article.fecha;
     if (modalText) modalText.textContent = article.contenido;
