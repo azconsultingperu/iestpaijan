@@ -81,6 +81,13 @@
   transition: background 0.3s ease;
 }
 .doc-card a:hover { background: #a00000; }
+.doc-card__pending {
+  display: inline-block;
+  margin-top: 0.5rem;
+  color: #666;
+  font-size: 0.82rem;
+  font-style: italic;
+}
 
 /* ====== ESTADÍSTICAS ====== */
 .stats-grid {
