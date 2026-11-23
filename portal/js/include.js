@@ -15,20 +15,20 @@
     var a = escapeHtml(alt || '');
     var ld = loading || 'lazy';
     var onerror = 'this.onerror=null;this.src=window.placeHolderImg||\'' + placeHolderImg + '\'';
-    return '<picture><source srcset="' + b + '.avif" type="image/avif"><source srcset="' + b + '.webp" type="image/webp"><img src="' + b + '.webp" alt="' + a + '" loading="' + ld + '" onerror="' + onerror + '"></picture>';
+    return '<picture><source srcset="' + b + '.webp" type="image/webp"><img src="' + b + '.webp" alt="' + a + '" loading="' + ld + '" onerror="' + onerror + '"></picture>';
   }
 
   function pictureInnerFor(base, alt, loading) {
     var b = String(base || '');
     var a = escapeHtml(alt || '');
     var ld = loading || 'lazy';
-    var onerror = 'this.onerror=null;this.src=window.placeHolderImg||\'' + placeHolderImg + '\';console.warn(\'[media] missing avif/webp for\',\'' + b.replace(/'/g,'\\\'') + '\')';
-    return '<source srcset="' + b + '.avif" type="image/avif"><source srcset="' + b + '.webp" type="image/webp"><img src="' + b + '.webp" alt="' + a + '" loading="' + ld + '" onerror="' + onerror + '">';
+    var onerror = 'this.onerror=null;this.src=window.placeHolderImg||\'' + placeHolderImg + '\';console.warn(\'[media] missing webp for\',\'' + b.replace(/'/g,'\\\'') + '\')';
+    return '<source srcset="' + b + '.webp" type="image/webp"><img src="' + b + '.webp" alt="' + a + '" loading="' + ld + '" onerror="' + onerror + '">';
   }
 
   function imageSetFor(base) {
     var b = String(base || '');
-    return 'image-set(url("' + b + '.avif") type("image/avif"), url("' + b + '.webp") type("image/webp"))';
+    return 'image-set(url("' + b + '.webp") type("image/webp"))';
   }
 
   if (typeof window !== 'undefined') {
@@ -60,12 +60,12 @@
     }
 
     return [
-      '<div id="page-loader" class="page-loader"><div class="page-loader__ring"><img src="' + i + 'logo-transp.png" alt="IESTP PAIJÁN" class="page-loader__logo"></div></div>',
+      '<div id="page-loader" class="page-loader"><div class="page-loader__ring"><img src="' + i + 'logo-transp.webp" alt="IESTP PAIJÁN" class="page-loader__logo"></div></div>',
       '<header id="site-header" class="header">',
       '<div class="container header__inner">',
       '<a class="brand" href="' + home + '">',
       '<div class="brand__top">',
-      '<img src="' + i + 'logo-transp.png" alt="IESTP Paiján" class="brand__img">',
+      '<img src="' + i + 'logo-transp.webp" alt="IESTP Paiján" class="brand__img">',
       '<div class="brand__text">',
       '<span class="brand__name">IESTP Paiján</span>',
       '<span class="brand__registration">R.M. N° 498-87-ED</span>',
@@ -81,7 +81,7 @@
       '<div id="main-nav" class="nav">',
       '<div class="nav__header">',
       '<div class="nav__header-brand">',
-      '<img src="' + i + 'logo-transp.png" alt="IESTP Paiján">',
+      '<img src="' + i + 'logo-transp.webp" alt="IESTP Paiján">',
       '<span>IESTP Paiján</span>',
       '</div>',
       '<button class="nav__close" aria-label="Cerrar menú"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>',
@@ -124,7 +124,7 @@
 
       '<div class="footer__col footer__brand">',
       '<div class="footer__brand-top">',
-      '<img src="' + i + 'logo-transp.png" alt="IESTP PAIJÁN" class="footer__logo">',
+      '<img src="' + i + 'logo-transp.webp" alt="IESTP PAIJÁN" class="footer__logo">',
       '<div class="footer__brand-text">',
       '<span class="footer__brand-name">IESTP Paiján</span>',
       '<span class="footer__brand-registration">R.M. N° 498-87-ED</span>',

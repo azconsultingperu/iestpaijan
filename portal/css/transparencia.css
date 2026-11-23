@@ -3,7 +3,7 @@
 /* ====== SECTION BANNER ====== */
 .section-banner {
   position: relative;
-  background: image-set(url("../imagenes/frontis.avif") type("image/avif"), url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.jpg")) no-repeat center center/cover;
+  background: image-set(url("../imagenes/frontis.webp") type("image/webp"), url("../imagenes/frontis.webp")) no-repeat center center/cover;
   padding: 3rem 1rem;
   text-align: center;
   overflow: hidden;

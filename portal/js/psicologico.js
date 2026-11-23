@@ -31,7 +31,7 @@ function picHTML(base, alt){
   var b = String(base||'').replace(/\.(jpe?g|png|avif|webp)$/i,'');
   var a = String(alt||'').replace(/"/g,'&quot;');
   if (window.pictureFor) return window.pictureFor(b, alt);
-  return '<picture><source srcset="'+b+'.avif" type="image/avif"><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=(window.placeHolderImg||\'\')"></picture>';
+  return '<picture><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=(window.placeHolderImg||\'\')"></picture>';
 }
 // Contenedor donde se insertarán las tarjetas
 const album = document.getElementById("album");
@@ -69,7 +69,7 @@ function mostrarModal(item) {
   modal.style.display = "flex";
   var base0 = String(item.imagenes[0]||'').replace(/\.(jpe?g|png|avif|webp)$/i,'');
   modalImagen.src = base0 + ".webp";
-  modalImagen.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=base0+".avif"; } else if(window.placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg; }};
+  modalImagen.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=base0+".webp"; } else if(window.placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg; }};
   modalDescripcion.textContent = item.descripcion;
 
   // Limpiar miniaturas previas
@@ -84,7 +84,7 @@ function mostrarModal(item) {
     // Keep click handling on the img
     thumb.addEventListener("click", () => {
       modalImagen.src = b + ".webp";
-      modalImagen.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".avif"; }};
+      modalImagen.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".webp"; }};
     });
     // Append the full picture if available, else just img
     if (thumbWrap.firstChild && thumbWrap.firstChild.tagName === 'PICTURE') modalMiniaturas.appendChild(thumbWrap.firstChild);

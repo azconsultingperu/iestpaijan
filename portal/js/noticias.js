@@ -57,7 +57,7 @@
       card.classList.add("news-card");
       var baseN = toBaseN(noticia.imagen[0]);
       var altN = String(noticia.titulo).replace(/"/g,'&quot;');
-      var picN = (window.pictureFor ? window.pictureFor(baseN, noticia.titulo) : '<picture><source srcset="' + baseN + '.avif" type="image/avif"><source srcset="' + baseN + '.webp" type="image/webp"><img src="' + baseN + '.webp" alt="' + altN + '" class="news-img" loading="lazy"></picture>');
+      var picN = (window.pictureFor ? window.pictureFor(baseN, noticia.titulo) : '<picture><source srcset="' + baseN + '.webp" type="image/webp"><img src="' + baseN + '.webp" alt="' + altN + '" class="news-img" loading="lazy"></picture>');
       card.innerHTML = `
         ${picN}
         <div class="news-content">
@@ -86,13 +86,11 @@
         var b = toBaseN(currentImages[index]);
         var mp = modalImg.closest ? modalImg.closest("picture") : null;
         if (mp) {
-          var av = mp.querySelector('source[type="image/avif"]');
           var wv = mp.querySelector('source[type="image/webp"]');
-          if (av) av.srcset = b + ".avif";
           if (wv) wv.srcset = b + ".webp";
         }
         modalImg.src = b + ".webp";
-        modalImg.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".avif"; } else if(window.placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg; }};
+        modalImg.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".webp"; } else if(window.placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg; }};
       }
     }
 

@@ -73,7 +73,7 @@ const noticias = [
     card.style.setProperty("--i", index);
     var baseE = toBase(noticia.imagen[0]);
     var altE = String(noticia.titulo).replace(/"/g,'&quot;');
-    var picE = '<picture><source srcset="' + baseE + '.avif" type="image/avif"><source srcset="' + baseE + '.webp" type="image/webp"><img src="' + baseE + '.webp" alt="' + altE + '" loading="lazy"></picture>';
+    var picE = '<picture><source srcset="' + baseE + '.webp" type="image/webp"><img src="' + baseE + '.webp" alt="' + altE + '" loading="lazy"></picture>';
     if (window.pictureFor) picE = window.pictureFor(baseE, noticia.titulo);
     card.innerHTML =
       '<div class="news-card__image">' +
@@ -100,7 +100,7 @@ const noticias = [
   function showArticle(index) {
     const article = noticias[index];
     if (!article) return;
-    if (modalImg) { var b=toBase(article.imagen[0]); modalImg.src=b+".webp"; modalImg.onerror=function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".avif"; }}; }
+    if (modalImg) { var b=toBase(article.imagen[0]); modalImg.src=b+".webp"; modalImg.onerror=function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".webp"; }}; }
     if (modalTitle) modalTitle.textContent = article.titulo;
     if (modalDate) modalDate.textContent = article.fecha;
     if (modalText) modalText.textContent = article.contenido;

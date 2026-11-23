@@ -3,31 +3,22 @@ set -e
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 IMAGES_DIR="$ROOT/portal/imagenes"
 FAIL=0
-ALLOW_RESIDUAL=0
-if [ "$1" = "--pre" ]; then ALLOW_RESIDUAL=1; fi
+echo "=== Validating media assets (WebP only) ==="
 
-echo "=== Validating media-assets (AVIF+WEBP) ${1:-}==="
-
-# 1. Check for residual JPG/JPEG/PNG (except allowed exceptions)
-# Allowed: logo-transp.png (favicon) + whatsapp.svg (vector)
-found=$(find "$IMAGES_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" \) | grep -v "logo-transp.png" || true)
+# 1. Only WebP files may be stored in the image directory.
+found=$(find "$IMAGES_DIR" -type f -not -name "*.webp" || true)
 if [ -n "$found" ]; then
   count=$(echo "$found" | wc -l)
-  if [ $ALLOW_RESIDUAL -eq 1 ]; then
-    echo "⚠ Residual JPG/PNG found ($count files) — expected before deletion (will be removed in 7.1)"
-  else
-    echo "ERROR: Residual JPG/PNG files found (should be deleted, only AVIF+WEBP allowed):"
-    echo "$found" | head -n 20
-    echo "Total residual: $count"
-    FAIL=1
-  fi
+  echo "ERROR: Non-WebP files found:"
+  echo "$found" | head -n 20
+  echo "Total residual: $count"
+  FAIL=1
 else
-  echo "✓ No residual JPG/PNG (except allowed logo-transp.png)"
+  echo "✓ Image directory contains only WebP files"
 fi
 
-# 2. Check that huérfanos have been converted
+# 2. Check that critical images exist as WebP.
 for base in portal/imagenes/carreras/acc_bg portal/imagenes/carreras/enfermeria_bg portal/imagenes/carreras/pagro_bg portal/imagenes/bolsa_trabajo/old-egresados_alumnos; do
-  if [ ! -f "$ROOT/$base.avif" ]; then echo "ERROR: Missing $base.avif"; FAIL=1; else echo "✓ $base.avif exists"; fi
   if [ ! -f "$ROOT/$base.webp" ]; then echo "ERROR: Missing $base.webp"; FAIL=1; else echo "✓ $base.webp exists"; fi
 done
 
@@ -70,13 +61,12 @@ else
   echo "✓ HTML picture fallbacks are WEBP"
 fi
 
-# 6. Check that referenced bases have avif+webp files
+# 6. Check that referenced bases have WebP files.
 echo "--- Checking critical images ---"
 for img in portal/imagenes/hero portal/imagenes/frontis portal/imagenes/organigrama-iestp-paijan portal/imagenes/bolsa_trabajo/estudiantes-egresados; do
-  if [ ! -f "$ROOT/$img.avif" ]; then echo "ERROR: Missing $img.avif"; FAIL=1; fi
   if [ ! -f "$ROOT/$img.webp" ]; then echo "ERROR: Missing $img.webp"; FAIL=1; fi
 done
-echo "✓ Critical images have AVIF+WEBP"
+echo "✓ Critical images have WebP"
 
 # 7. Check include.js helper exists
 if grep -q "function pictureFor" "$ROOT/portal/js/include.js"; then echo "✓ Helper pictureFor exists in include.js"; else echo "ERROR: pictureFor missing"; FAIL=1; fi

@@ -2,7 +2,7 @@ function picHTML(base, alt){
   var b = String(base||'').replace(/\.(jpe?g|png|avif|webp)$/i,'');
   var a = String(alt||'').replace(/"/g,'&quot;');
   if (window.pictureFor) return window.pictureFor(b, alt);
-  return '<picture><source srcset="'+b+'.avif" type="image/avif"><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=(window.placeHolderImg||\'\')"></picture>';
+  return '<picture><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=(window.placeHolderImg||\'\')"></picture>';
 }
 document.addEventListener("DOMContentLoaded", () => {
   const enlacesData = [

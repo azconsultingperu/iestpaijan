@@ -29,7 +29,7 @@ function picHTML(base, alt){
   var b = String(base||'').replace(/\.(jpe?g|png|avif|webp)$/i,'');
   var a = String(alt||'').replace(/"/g,'&quot;');
   if (window.pictureFor) return window.pictureFor(b, alt);
-  return '<picture><source srcset="'+b+'.avif" type="image/avif"><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=(window.placeHolderImg||\'\')"></picture>';
+  return '<picture><source srcset="'+b+'.webp" type="image/webp"><img src="'+b+'.webp" alt="'+a+'" loading="lazy" onerror="this.onerror=null;this.src=(window.placeHolderImg||\'\')"></picture>';
 }
 const listaTopico = document.getElementById("topico-lista");
 const modalTopico = document.getElementById("modalTopico");
@@ -62,7 +62,7 @@ function openModalTopico(item) {
   modalTopico.style.display = "flex";
   var base0 = String(item.imagenes[0]||'').replace(/\.(jpe?g|png|avif|webp)$/i,'');
   modalTopicoImg.src = base0 + ".webp";
-  modalTopicoImg.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=base0+".avif"; } else if(window.placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg; }};
+  modalTopicoImg.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=base0+".webp"; } else if(window.placeHolderImg){ this.onerror=null; this.src=window.placeHolderImg; }};
   modalTopicoDesc.textContent = item.descripcion;
 
   // miniaturas
@@ -74,7 +74,7 @@ function openModalTopico(item) {
     var thumb = wrap.querySelector("img") || document.createElement("img");
     thumb.addEventListener("click", () => {
       modalTopicoImg.src = b + ".webp";
-      modalTopicoImg.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".avif"; }};
+      modalTopicoImg.onerror = function(){ if(this.src.endsWith('.webp')){ this.onerror=null; this.src=b+".webp"; }};
     });
     if (wrap.firstChild && wrap.firstChild.tagName === 'PICTURE') modalTopicoMiniaturas.appendChild(wrap.firstChild);
     else modalTopicoMiniaturas.appendChild(thumb);

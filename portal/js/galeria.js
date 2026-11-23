@@ -275,13 +275,9 @@ galeriaData.forEach(album => {
       item.setAttribute("tabindex", "0");
       item.setAttribute("aria-label", "Abrir foto: " + (img.desc || (evento.nombre + ", foto " + (index + 1) + " de " + evento.imagenes.length)));
 
-      var base = img.src.replace(/\.(jpe?g|png|avif|webp)$/i, '');
+      var base = img.src.replace(/\.(jpe?g|png|webp)$/i, '');
       var altText = img.desc || (evento.nombre + ". Foto " + (index + 1) + " de " + evento.imagenes.length);
       var picture = document.createElement("picture");
-      var srcAvif = document.createElement("source");
-      srcAvif.srcset = base + ".avif";
-      srcAvif.type = "image/avif";
-      picture.appendChild(srcAvif);
       var srcWebp = document.createElement("source");
       srcWebp.srcset = base + ".webp";
       srcWebp.type = "image/webp";
@@ -356,19 +352,17 @@ function closeGalleryModal() {
 }
 
 function showImage() {
-  var base = currentImages[currentIndex].src.replace(/\.(jpe?g|png|avif|webp)$/i, '');
+  var base = currentImages[currentIndex].src.replace(/\.(jpe?g|png|webp)$/i, '');
   // Update <picture> sources if modal is wrapped (future-proof), else fallback to img src
   var modalPicture = modalImg.closest ? modalImg.closest("picture") : null;
   if (modalPicture) {
-    var avifSrc = modalPicture.querySelector('source[type="image/avif"]');
     var webpSrc = modalPicture.querySelector('source[type="image/webp"]');
-    if (avifSrc) avifSrc.srcset = base + ".avif";
     if (webpSrc) webpSrc.srcset = base + ".webp";
   }
   modalImg.src = base + ".webp";
   modalImg.onerror = function() {
-    if (this.src.endsWith('.webp')) { this.onerror = null; this.src = base + ".avif"; }
-    else if (window.placeHolderImg) { this.onerror = null; this.src = window.placeHolderImg; console.warn('[media] missing avif/webp for', base); }
+    if (this.src.endsWith('.webp')) { this.onerror = null; this.src = base + ".webp"; }
+    else if (window.placeHolderImg) { this.onerror = null; this.src = window.placeHolderImg; console.warn('[media] missing webp for', base); }
   };
   var desc = currentImages[currentIndex].desc;
   modalImg.alt = desc || "Foto del evento";
